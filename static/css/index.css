@@ -1,0 +1,8 @@
+#header {
+    display: flex;
+    border: 2px solid black;
+}
+
+#header_title {
+    margin-left: 50px;
+}
