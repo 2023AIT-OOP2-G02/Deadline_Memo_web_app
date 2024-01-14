@@ -4,11 +4,9 @@ import json  # Python標準のJSONライブラリを読み込んで、データ�
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-from database.DataAccess import DataAccess
-from database.data_base_init import Data
+from data_base_init import Data, db, app
+from DataAccess import DataAccess
 
-
-app = Flask(__name__)
 
 # for debug
 if __name__ == "__main__":

@@ -4,8 +4,9 @@ import json  # Python標準のJSONライブラリを読み込んで、データ�
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
+from main import app
 
-app = Flask(__name__)
+
 app.config["JSON_AS_ASCII"] = False  # 日本語などのASCII以外の文字列を返したい場合は、こちらを設定しておく
 
 # データベース
