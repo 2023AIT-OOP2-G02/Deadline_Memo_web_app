@@ -1,5 +1,5 @@
-from data_base_init import Data, db, app
-from DataAccess import DataAccess
+from data_base_init import db, app
+from DataAccess import DataAccess, Data
 
 # for debug
 if __name__ == "__main__":

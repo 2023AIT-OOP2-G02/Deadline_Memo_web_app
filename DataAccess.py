@@ -1,14 +1,19 @@
+import datetime
 import json
 from datetime import datetime
 
-from data_base_init import db, Data
+from main import db
 
 
 # DBをマネジメントするクラス
 class DataAccess:
 
+    # インストラクタ
+    def __init__(self, db):
+        self.db = db
+
     # データを追加する関数
-    def add_data(data_json: str):  # 例外処理が必要かも
+    def add_data(self, data_json: str):  # 例外処理が必要かも
         data_dict = json.loads(data_json)
 
         id: str = list(data_dict.keys())[0]
@@ -24,18 +29,18 @@ class DataAccess:
         # データベースにデータを追加
         data = Data(id=id, title=title, deadline=deadline, subject=subject, memo=memo, memo_img=memo_img,
                     created_by=created_by)
-        db.session.add(data)
-        db.session.commit()
+        self.db.session.add(data)
+        self.db.session.commit()
 
     # データを削除する関数
-    def delete_data(id: str):
+    def delete_data(self, id: str):
         data = Data.query.filter_by(id=id).first()
         if data:
-            db.session.delete(data)
-            db.session.commit()
+            self.db.session.delete(data)
+            self.db.session.commit()
 
     # データを更新する関数
-    def update_data(data_json: str):  # 例外処理が必要かも
+    def update_data(self, data_json: str):  # 例外処理が必要かも
         data_dict = json.loads(data_json)
 
         id: str = list(data_dict.keys())[0]
@@ -56,7 +61,7 @@ class DataAccess:
             data.memo = memo
             data.memo_img = memo_img
             data.created_by = created_by
-            db.session.commit()
+            self.db.session.commit()
 
     # データを取得する関数
     def fetch_data_all(user_id: str) -> str:  # json形式で返す
@@ -74,3 +79,17 @@ class DataAccess:
                 "created_by": data.created_by
             }
         return json.dumps(data_dict, ensure_ascii=False)
+
+
+class Data(db.Model):
+    id = db.Column(db.String(50), primary_key=True)  # 課題識別用のID
+    title = db.Column(db.String(120))
+    deadline = db.Column(db.DateTime)
+    subject = db.Column(db.String(120))
+    memo = db.Column(db.String(2000))
+    memo_img = db.Column(db.String(120))  # メモの画像のファイル名をuuidで保存
+    created_by = db.Column(db.String(120))
+    created_at = db.Column(db.DateTime,
+                           default=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))))  # 作成日時(日本時間)
+    updated_at = db.Column(db.DateTime, default=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))),
+                           onupdate=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))))  # 更新日時(日本時間)
