@@ -4,8 +4,6 @@ from DataAccess import DataAccess
 
 # for debug
 if __name__ == "__main__":
-    # debugモードが不要の場合は、debug=Trueを消してください
-    # app.run(debug=True)
     
     data_json = '''{
         "fDja8VuaVy4BGNfXDi1gha": {
