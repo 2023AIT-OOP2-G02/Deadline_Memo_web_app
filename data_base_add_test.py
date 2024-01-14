@@ -1,9 +1,3 @@
-from flask import Flask, request, render_template, jsonify, Blueprint
-import json  # Python標準のJSONライブラリを読み込んで、データの保存等に使用する
-
-from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
-
 from data_base_init import Data, db, app
 from DataAccess import DataAccess
 
@@ -14,7 +8,7 @@ if __name__ == "__main__":
     # app.run(debug=True)
     
     data_json = '''{
-        "fDja8VuaVy4BGNfXDi1ghp": {
+        "fDja8VuaVy4BGNfXDi1gha": {
             "title": "test1",
             "deadline": "2022-02-20 00:00:00",
             "subject": "オブ演",
