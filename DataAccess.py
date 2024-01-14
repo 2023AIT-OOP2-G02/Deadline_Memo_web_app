@@ -21,3 +21,9 @@ class DataAccess:
         data = Data(id=id, title=title, deadline=deadline, subject=subject, memo=memo, memo_img=memo_img, created_by=created_by)
         db.session.add(data)
         db.session.commit()
+        
+    def delete_data(id: str):
+        data = Data.query.filter_by(id=id).first()
+        if data:
+            db.session.delete(data)
+            db.session.commit()
