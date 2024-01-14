@@ -3,3 +3,6 @@ const date = datetime.split(' ')[0];
 
 const dateElement = document.getElementById('date');
 dateElement.innerHTML = date;
+
+
+myfunc()
