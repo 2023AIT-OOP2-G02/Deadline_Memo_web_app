@@ -4,9 +4,8 @@ import json  # Python標準のJSONライブラリを読み込んで、データ�
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 
-from main import app
 
-
+app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False  # 日本語などのASCII以外の文字列を返したい場合は、こちらを設定しておく
 
 # データベース
@@ -24,11 +23,13 @@ class Data(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))) # 作成日時(日本時間)
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))), onupdate=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9)))) # 更新日時(日本時間)
     
-with app.app_context():
-    db.drop_all()  # データベースの全てのテーブルを削除
-    db.create_all()  # データベースのテーブルを再作成
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
     # app.run(debug=True)
+    
+    with app.app_context():
+        db.drop_all()  # データベースの全てのテーブルを削除
+        db.create_all()  # データベースのテーブルを再作成
+    
     pass
