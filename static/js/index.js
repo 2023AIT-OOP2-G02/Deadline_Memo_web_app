@@ -1,8 +1,12 @@
-const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo'}, { hour12: false });
+import { getUserID } from "./func.js";
+
+const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
 const date = datetime.split(' ')[0];
 
 const dateElement = document.getElementById('date');
 dateElement.innerHTML = date;
 
 
-myfunc()
+const userID = getUserID();
+console.log("ID:" + userID); //アクセスしてきた人のuserIDが表示されるはず
+
