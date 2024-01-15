@@ -71,8 +71,5 @@ def search_page():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.drop_all()  # データベースの全てのテーブルを削除
-        db.create_all()  # データベースのテーブルを再作成
     # debugモードが不要の場合は、debug=Trueを消してください
     app.run(debug=True)
