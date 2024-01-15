@@ -1,10 +1,8 @@
 from data_base_init import Data, db, app
 from DataAccess import DataAccess
 
-
 # for debug
 if __name__ == "__main__":
-    
     data_json = '''{
         "fDja8VuaVy4BGNfXDi1gha": {
             "title": "test1",
@@ -17,10 +15,9 @@ if __name__ == "__main__":
             "created_by": "test_user1"
         }
     }'''
-    
+
     with app.app_context():
         DataAccess.add_data(data_json)
-
 
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().title)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().deadline)
@@ -30,5 +27,5 @@ if __name__ == "__main__":
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().created_at)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().updated_at)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().created_by)
-    
+
     pass
