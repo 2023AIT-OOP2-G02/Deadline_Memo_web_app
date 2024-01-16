@@ -71,9 +71,9 @@ def search_page():
 
 
 # for debug
-@app.route("/API_test")
-def API_test():
-    return render_template("API_test.html")
+@app.route("/API_test_DatabaseAdd")
+def API_test_DatabaseAdd():
+    return render_template("API_test_DatabaseAdd.html")
 
 
 if __name__ == "__main__":
