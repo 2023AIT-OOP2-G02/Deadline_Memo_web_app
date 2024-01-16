@@ -17,7 +17,7 @@ post_button.addEventListener('click', () => {
 
     let deadline = deadline_date.toString() + " " + deadline_time.toString();
 
-    let uuid = self.crypto.randomUUID();
+    let uuid = self.crypto.randomUUID(); // 課題id
     // console.log(uuid);
 
     const userID = getUserID();
