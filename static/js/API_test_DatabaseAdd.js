@@ -1,3 +1,5 @@
+import { getUserID } from "./func.js";
+
 const input_title = document.getElementById('title');
 const input_subject = document.getElementById('subject');
 const input_deadline_date = document.getElementById('deadline_date');
@@ -13,14 +15,29 @@ post_button.addEventListener('click', () => {
     let deadline_time = input_deadline_time.value;
     let memo = input_memo.value;
 
+    let deadline = deadline_date.toString() + " " + deadline_time.toString();
+
     let uuid = self.crypto.randomUUID();
-    console.log(uuid);
+    // console.log(uuid);
+
+    const userID = getUserID();
+
+    let datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
+    // console.log(datetime);
 
     let data = {
-        "title": title,
-        "subject": subject,
-        "deadline_date": deadline_date,
-        "deadline_time": deadline_time,
-        "memo": memo
+        uuid: {
+            "title": title,
+            "subject": subject,
+            "deadline": deadline,
+            "memo": memo,
+            "memo_img": "nothing",
+            "created_at": datetime,
+            "updated_at": datetime,
+            "created_by": userID,
+        }
     };
+
+    // fetch api で POST
+
 });
