@@ -44,8 +44,8 @@ post_button.addEventListener('click', () => {
 	let fd = new FormData();
 	fd.append("data", JSON.stringify(data));
 
-     // 送信先 : /add_data
-     fetch("/add_data", {method: "POST", body: fd}).then(response => {
+    // 送信先 : /add_data
+    fetch("/add_data", {method: "POST", body: fd}).then(response => {
         response.json().then(data => {
             console.log(data);
         });
