@@ -40,8 +40,12 @@ post_button.addEventListener('click', () => {
 
     // fetch api で POST
 
+    // FormDataオブジェクトを作成してJSON形式のデータをセット
+	let fd = new FormData();
+	fd.append("data", JSON.stringify(data));
+
      // 送信先 : /add_data
-     fetch("/add_data", {method: "POST", body: JSON.stringify(data)}).then(response => {
+     fetch("/add_data", {method: "POST", body: fd}).then(response => {
         response.json().then(data => {
             console.log(data);
         });
