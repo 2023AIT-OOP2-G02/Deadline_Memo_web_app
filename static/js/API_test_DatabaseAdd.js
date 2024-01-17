@@ -40,4 +40,11 @@ post_button.addEventListener('click', () => {
 
     // fetch api で POST
 
+    // 送信先 : /add_data
+    fetch("/add_data", {method: "POST", body: data}).then(response => {
+        response.json().then(data => {
+            console.log(data);
+        });
+    });
+
 });
