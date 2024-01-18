@@ -22,7 +22,7 @@ def add_page():
 
 @app.route("/add_data")  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
 def add_data():
-    # データを追加する関数 #
+    # 課題追加ボタン #
 
     # 課題IDを発行
     kadai_id = generate_id()
@@ -52,7 +52,8 @@ def add_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
-    return render_template("add_page.html") # これも仮
+    # 送信が完了したらTOPページに戻る
+    return render_template("index.html")
 
 
 @app.route("/detail_edit_page")
@@ -60,14 +61,35 @@ def detail_edit_page():
     return render_template("detail_edit_page.html")
 
 
+@app.route("/detail_edit_data")
+def detail_edit_data():
+    # 課題編集確定ボタン #
+    return render_template("index.html")
+
+
 @app.route("/remove_page")
 def remove_page():
     return render_template("remove_page.html")
 
 
+@app.route("/remove_data")
+def remove_data():
+    # 課題削除ボタン #
+    return render_template("index.html")
+
+
+
 @app.route("/search_page")
 def search_page():
     return render_template("search_page.html")
+
+
+@app.route("/search_data")
+def search_data():
+    # 課題検索ボタン #
+
+    return render_template("index.html")
+
 
 
 if __name__ == "__main__":
