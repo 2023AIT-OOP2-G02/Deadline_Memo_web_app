@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API_test</title>
+    <style>
+        .input-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-field label {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API_test デバッグ用のページです</h1>
+    <h1>データベースにデータを追加するAPIのテストに使用します</h1>
+    <table border="1">
+        <tr>
+            <th>課題ID</th><th>タイトル</th><th>deadline</th><th>subject</th><th>memo</th>
+            <th>memo_img</th><th>created_at</th><th>updated_at</th><th>created_by</th>
+        </tr>
+
+        {% for key in keys %}
+        <tr>
+            <td>data_dict[key]["title"]</td>
+            <td>data_dict[key]["deadline"]</td>
+            <td>data_dict[key]["subject"]</td>
+            <td>data_dict[key]["memo"]</td>
+            <td>data_dict[key]["memo_img"]</td>
+            <td>data_dict[key]["created_at"]</td>
+            <td>data_dict[key]["updated_at"]</td>
+            <td>data_dict[key]["created_by"]</td>
+        </tr>
+        {% end %}
+
+        <!-- <tr>
+            <td>kadaiID</td><td>test1</td><td>2022-02-20 00:00:00</td><td>オブ演</td><td>感想いっぱい書く必要</td>
+            <td>img/mCpcLbPq6pGf4ztYZsrKQi.jpg</td><td>2021-01-02 00:00:00</td><td>2021-01-02 00:00:00</td><td>test_user1</td>
+        </tr> -->
+    </table>
+    <div>
+        {{data}}
+    </div>
+    <!-- <div id="main">
+        <div class="input-field">
+            <label for="title">title:</label>
+            <input type="text" id="title">
+        </div>
+        <div class="input-field">
+            <label for="subject">subject:</label>
+            <input type="text" id="subject">
+        </div>
+        <div class="input-field">
+            <label for="deadline">deadline:</label>
+            <input type="date" id="deadline_date">
+            <input type="time" id="deadline_time" style="margin-left: 5px;">
+        </div>
+        <div class="input-field">
+            <label for="memo">memo:</label>
+            <input type="text" id="memo">
+        </div>
+
+        <button id="post">POST</button>
+    </div> -->
+</body>
+<script type="module" src="{{url_for('static', filename='js/API_test_DatabaseAdd.js')}}"></script>
+
+</html>

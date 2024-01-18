@@ -54,6 +54,15 @@ def add_data():
 
     return render_template("add_page.html") # これも仮
 
+#fetchall
+@app.route("/fetch_all_data")  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+def fetch_all_data():
+    res = DataAccess.fetch_data_all(user_id = 'test_user1')
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    # print(res)
+    return render_template("API_test_FetchAll.html",data_dict = data_dict,keys = keys)
 
 @app.route("/detail_edit_page")
 def detail_edit_page():
@@ -75,6 +84,10 @@ def search_page():
 def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
 
+# for debug fetchall
+@app.route("/API_test_FetchAll")
+def API_test_FetchAll():
+    return render_template("API_test_FetchAll.html")
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
