@@ -7,7 +7,7 @@
 
 
 
-
+const task_name = "プッシュ通知の実装"// テスト用
 
 function requestPushPermission() {
     Push.create("許可が必要です", {
@@ -36,3 +36,16 @@ document.getElementById('notifyButton').addEventListener('click', function() {
         return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
 });
+
+function sendPushNotification () {// 通知を送信する関数
+    Push.create("アクション通知", {
+        body: task_name + "の期限が迫っています！",
+        timeout: 1000,
+        onClick: function () {
+            console.log('一定時間が経過しました！');
+            this.close();
+        }
+    });
+}
+
+setInterval(sendPushNotification, 2000); // 2秒毎に通知を送信
