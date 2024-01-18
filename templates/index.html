@@ -26,9 +26,12 @@
             <div class="col">
             </div>
             <div class="col">
-
-                <button type="button" class="btn btn-danger">削除</button>
-                <button type="button" class="btn btn-primary">追加</button>
+                <a href="{{url_for('remove_page')}}">
+                    <button type="button" class="btn btn-danger">削除</button>
+                </a>
+                <a href="{{url_for('add_data')}}">
+                    <button type="button" class="btn btn-primary">追加</button>
+                </a>
             </div>
         </div>
 
@@ -86,7 +89,9 @@
             <div class="col">
             </div>
             <div class="col">
-                <button type="button" class="btn btn-dark">検索</button>
+                <a href="{{url_for("search_page")}}">
+                    <button type="button" class="btn btn-dark">検索</button>
+                </a>
             </div>
         </div>
 
