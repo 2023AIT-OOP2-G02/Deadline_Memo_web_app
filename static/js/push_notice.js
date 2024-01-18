@@ -7,14 +7,10 @@
 
 
 
-<<<<<<< Updated upstream
+
 const task_name_list = ["プッシュ通知の実装","宿題","レポート"]// テスト用
 const invalid_notification = [];// 一度表示した通知のタスク名を格納する配列
 const isInvalid = true;// 通知が無効であるかの確認
-=======
-const task_name = "プッシュ通知の実装"// テスト用
-const invalid_notification = [];// 一度表示した通知のタスク名を格納する配列
->>>>>>> Stashed changes
 
 function requestPushPermission() {
     Push.create("許可が必要です", {
