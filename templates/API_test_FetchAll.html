@@ -23,20 +23,28 @@
     <h1>データベースにデータを追加するAPIのテストに使用します</h1>
     <table border="1">
         <tr>
-            <th>課題ID</th><th>タイトル</th><th>deadline</th><th>subject</th><th>memo</th>
-            <th>memo_img</th><th>created_at</th><th>updated_at</th><th>created_by</th>
+            <th>課題ID</th>
+            <th>タイトル</th>
+            <th>deadline</th>
+            <th>subject</th>
+            <th>memo</th>
+            <th>memo_img</th>
+            <th>created_at</th>
+            <th>updated_at</th>
+            <th>created_by</th>
         </tr>
 
         {% for key in keys %}
         <tr>
-            <td>data_dict[key]["title"]</td>
-            <td>data_dict[key]["deadline"]</td>
-            <td>data_dict[key]["subject"]</td>
-            <td>data_dict[key]["memo"]</td>
-            <td>data_dict[key]["memo_img"]</td>
-            <td>data_dict[key]["created_at"]</td>
-            <td>data_dict[key]["updated_at"]</td>
-            <td>data_dict[key]["created_by"]</td>
+            <td>{{key}}</td>
+            <td>{{data_dict[key]["title"]}}</td>
+            <td>{{data_dict[key]["deadline"]}}</td>
+            <td>{{data_dict[key]["subject"]}}</td>
+            <td>{{data_dict[key]["memo"]}}</td>
+            <td>{{data_dict[key]["memo_img"]}}</td>
+            <td>{{data_dict[key]["created_at"]}}</td>
+            <td>{{data_dict[key]["updated_at"]}}</td>
+            <td>{{data_dict[key]["created_by"]}}</td>
         </tr>
         {% end %}
 
@@ -46,7 +54,7 @@
         </tr> -->
     </table>
     <div>
-        {{data}}
+        <!-- {{data_dict}} -->
     </div>
     <!-- <div id="main">
         <div class="input-field">
