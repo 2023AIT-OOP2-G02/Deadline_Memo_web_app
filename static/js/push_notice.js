@@ -1,3 +1,14 @@
+/**
+ * MacOSの場合、左上のシステム設定から集中モード、おやすみモードをoffにする。
+ * 通知の設定から使用するブラウザの通知をonにしておく
+ * Chromeの場合はchromeから通知の許可を表示できるよう設定を変える。
+ */
+
+
+
+
+
+
 function requestPushPermission() {
     Push.create("許可が必要です", {
         body: "プッシュ通知を受け取るために許可が必要です。",
@@ -11,12 +22,17 @@ function requestPushPermission() {
 
 // 通知を送信する関数をボタンのクリックイベントに結びつける
 document.getElementById('notifyButton').addEventListener('click', function() {
-    Push.create("アクション通知", {
-        body: "ボタンがクリックされました！",
-        timeout: 5000,
-        onClick: function () {
-            console.log('通知がクリックされました！');
-            this.close();
-        }
-    });
+    if (Push.Permission.has() && !isIOS()) {
+        Push.create("通知", {
+            body: "これは標準のプッシュ通知です。",
+            // その他のオプション
+        });
+    } else {
+        // iOSデバイスの場合のフォールバック通知処理
+        alert("iOSデバイスではプッシュ通知がサポートされていません。");
+    }
+    
+    function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
 });
