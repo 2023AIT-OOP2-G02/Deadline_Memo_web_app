@@ -70,6 +70,12 @@ def search_page():
     return render_template("search_page.html")
 
 
+# for debug
+@app.route("/API_test_DatabaseAdd")
+def API_test_DatabaseAdd():
+    return render_template("API_test_DatabaseAdd.html")
+
+
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
     app.run(debug=True)
