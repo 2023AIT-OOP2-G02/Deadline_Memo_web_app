@@ -47,36 +47,7 @@
             <td>{{data_dict[key]["created_by"]}}</td>
         </tr>
         {% endfor %}
-
-        <!-- <tr>
-            <td>kadaiID</td><td>test1</td><td>2022-02-20 00:00:00</td><td>オブ演</td><td>感想いっぱい書く必要</td>
-            <td>img/mCpcLbPq6pGf4ztYZsrKQi.jpg</td><td>2021-01-02 00:00:00</td><td>2021-01-02 00:00:00</td><td>test_user1</td>
-        </tr> -->
     </table>
-    <div>
-        <!-- {{data_dict}} -->
-    </div>
-    <!-- <div id="main">
-        <div class="input-field">
-            <label for="title">title:</label>
-            <input type="text" id="title">
-        </div>
-        <div class="input-field">
-            <label for="subject">subject:</label>
-            <input type="text" id="subject">
-        </div>
-        <div class="input-field">
-            <label for="deadline">deadline:</label>
-            <input type="date" id="deadline_date">
-            <input type="time" id="deadline_time" style="margin-left: 5px;">
-        </div>
-        <div class="input-field">
-            <label for="memo">memo:</label>
-            <input type="text" id="memo">
-        </div>
-
-        <button id="post">POST</button>
-    </div> -->
 </body>
 <script type="module" src="{{url_for('static', filename='js/API_test_DatabaseAdd.js')}}"></script>
 
