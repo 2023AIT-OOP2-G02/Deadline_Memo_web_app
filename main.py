@@ -61,9 +61,8 @@ def fetch_all_data():
 
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
-    # print(res)
-    return render_template("API_test_FetchAll.html")
-    # keys = keys,data_dict = data_dict
+    print(res)
+    return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
 
 @app.route("/detail_edit_page")
 def detail_edit_page():
