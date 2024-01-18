@@ -6,3 +6,10 @@
 #header_title {
     margin-left: 50px;
 }
+
+.table-scrool {
+    width: 1000px;
+    height: 300px;
+    overflow: auto;
+
+}
