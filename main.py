@@ -2,7 +2,7 @@ import random
 import threading
 from data_base_init import Data, db
 from flask_startup import app
-from flask import Flask, request, render_template, jsonify, Blueprint
+from flask import Flask, request, render_template, jsonify, Blueprint, url_for
 import json  # Python標準のJSONライブラリを読み込んで、データの保存等に使用する
 
 from DataAccess import DataAccess
@@ -80,7 +80,7 @@ def search_page():
 def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
 
-# for debug fetchall
+# for debug fetchall:1
 @app.route("/API_test_FetchAll")
 def API_test_FetchAll():
     res = DataAccess.fetch_data_all(user_id = 'test_user1')
@@ -89,6 +89,18 @@ def API_test_FetchAll():
     keys = list(data_dict.keys())
     # print(res)
     return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
+
+# for debug fetchall:2
+@app.route("/API_test_FetchMyData",methods=["POST"])
+def API_test_FetchMyData():
+    user_id = request.values['userID']
+
+    res = DataAccess.fetch_data_all(user_id)
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    print(user_id)
+    return url_for("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください

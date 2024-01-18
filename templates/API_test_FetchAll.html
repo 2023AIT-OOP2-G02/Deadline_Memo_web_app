@@ -20,7 +20,7 @@
 
 <body>
     <h1>API_test デバッグ用のページです</h1>
-    <h1>データベースにデータを追加するAPIのテストに使用します</h1>
+    <h1>データベースのデータを全取得するAPIのテスト</h1>
     <table border="1">
         <tr>
             <th>課題ID</th>
@@ -48,7 +48,8 @@
         </tr>
         {% endfor %}
     </table>
+    <button id="view_mydata">自分のIDのデータを表示</button>
 </body>
-<script type="module" src="{{url_for('static', filename='js/API_test_DatabaseAdd.js')}}"></script>
+<script type="module" src="{{url_for('static', filename='js/API_test_FetchAll.js')}}"></script>
 
 </html>

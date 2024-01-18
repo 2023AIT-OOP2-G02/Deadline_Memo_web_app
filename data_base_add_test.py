@@ -12,7 +12,7 @@ if __name__ == "__main__":
             "memo_img": "img/mCpcLbPq6pGf4ztYZsrKQi.jpg",
             "created_at": "2021-01-02 00:00:00",
             "updated_at": "2021-01-02 00:00:00",
-            "created_by": "test_user1"
+            "created_by": "32ce6c36-5aeb-4a44-871c-209e14cbd272"
         }
     }'''
 
