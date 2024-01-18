@@ -7,7 +7,10 @@
 
 
 
-const task_name = "プッシュ通知の実装"// テスト用
+
+const task_name_list = ["プッシュ通知の実装","宿題","レポート"]// テスト用
+const invalid_notification = [];// 一度表示した通知のタスク名を格納する配列
+const isInvalid = true;// 通知が無効であるかの確認
 
 function requestPushPermission() {
     Push.create("許可が必要です", {
@@ -37,15 +40,35 @@ document.getElementById('notifyButton').addEventListener('click', function() {
     }
 });
 
-function sendPushNotification () {// 通知を送信する関数
-    Push.create("アクション通知", {
-        body: task_name + "の期限が迫っています！",
-        timeout: 1000,
-        onClick: function () {
-            console.log('一定時間が経過しました！');
-            this.close();
+function sendPushNotification (task_name_list) {// 通知を送信する関数
+    for (var j=0; j < task_name_list.length; j++) {
+        if (checkIsInvalid(task_name_list[j]) == false) {
+            invalid_notification.push(task_name_list[j]);
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    console.log('一定時間が経過しました！');
+                    this.close();
+                }
+            });
         }
-    });
+    }
 }
 
-setInterval(sendPushNotification, 2000); // 2秒毎に通知を送信
+function checkIsInvalid (task_name) { //タスク名が該当するかチェック
+    for(var i=0; i < invalid_notification.length; i++) {
+        if (task_name == invalid_notification[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function refreshList() {
+    //ここは都合のいい条件でクリアするように変更してOK
+    invalid_notification.splice(0,1)
+}
+
+setInterval(refreshList, 5000);
+setInterval(() => sendPushNotification(task_name_list), 2000); // 2秒毎に通知を送信
