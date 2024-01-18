@@ -13,7 +13,7 @@ app.config["JSON_AS_ASCII"] = False  # 日本語などのASCII以外の文字列
 @app.route('/')
 def index():
 
-    return render_template("index.html")
+    return render_template("index_push_test.html")
 
 @app.route("/add_page", methods=["GET"])
 def add_page():
