@@ -54,13 +54,12 @@ def add_data():
 
     return render_template("add_page.html") # これも仮
 
-#@app.route("/remove_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
-@app.route("/remove_data") 
+@app.route("/remove_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
 def remove_data():
     # データを削除する関数 #
 
-    #kadai_id = request.values("kadai_id")
-    kadai_id = request.form.get("kadai_id")
+    kadai_id = request.values["kadai_id"]
+    #kadai_id = request.form.get('kadai_id', None)
 
     # DBに正常に追加されていることを確認
     # TODO: user_idも表示する
@@ -68,7 +67,7 @@ def remove_data():
     #print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
     #print(kadai_id)
     # データをDBから削除
-    #DataAccess.delete_data(kadai_id)
+    DataAccess.delete_data(kadai_id)
 
     #if kadai_id is not None:
         #json_data = list(filter(lambda item: kadai_id.lower() in item["kadai_id"].lower(), json_data))

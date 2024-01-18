@@ -16,8 +16,8 @@ post_button.addEventListener('click', () => {
     // 送信先 : /remove_data
     fetch("/remove_data", { method: "POST", body: fd }).then(response => {
         //fetch("/remove_data?" + kadai_id.toString()).then(response => {
-        response.json().then(data => {
-            console.log(data);
+        response.text().then(data => {
+            //console.log(data);
         });
     });
 
