@@ -12,7 +12,7 @@ from generate_id import generate_id
 # http://127.0.0.1:5000/
 @app.route('/')
 def index():
-
+    return render_template("index.html")
 
 
 @app.route("/add_page")
@@ -54,6 +54,32 @@ def add_data():
 
     return render_template("add_page.html") # これも仮
 
+#@app.route("/remove_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/remove_data") 
+def remove_data():
+    # データを削除する関数 #
+
+    #kadai_id = request.values("kadai_id")
+    kadai_id = request.form.get("kadai_id")
+
+    # DBに正常に追加されていることを確認
+    # TODO: user_idも表示する
+    print(f"kadai_id: {kadai_id}")
+    #print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
+    #print(kadai_id)
+    # データをDBから削除
+    #DataAccess.delete_data(kadai_id)
+
+    #if kadai_id is not None:
+        #json_data = list(filter(lambda item: kadai_id.lower() in item["kadai_id"].lower(), json_data))
+
+    #print(json_data)
+
+    #return jsonify(json_data)
+    return 'success'
+    #return render_template("remove_page.html")
+    #return render_template("API_test_Database_delete.html")
+
 
 @app.route("/detail_edit_page")
 def detail_edit_page():
@@ -74,6 +100,11 @@ def search_page():
 @app.route("/API_test_DatabaseAdd")
 def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
+
+# for debug
+@app.route("/API_test_Database_delete")
+def API_test_Database_delete():
+    return render_template("API_test_Database_delete.html")
 
 
 if __name__ == "__main__":

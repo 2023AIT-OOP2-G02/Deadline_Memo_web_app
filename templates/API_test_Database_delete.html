@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API_test</title>
+    <style>
+        .input-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-field label {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API_test デバッグ用のページです</h1>
+    <h1>データベースにデータを追加するAPIのテストに使用します</h1>
+    <div id="main">
+        <div class="input-field">
+            <label for="kadai_id">kadai_id:</label>
+            <input type="text" id="kadai_id">
+        </div>
+
+        <button id="post">POST</button>
+    </div>
+</body>
+<script type="module" src="{{url_for('static', filename='js/API_test_Database_delete.js')}}"></script>
+
+</html>
