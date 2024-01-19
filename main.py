@@ -100,8 +100,18 @@ def API_test_FetchMyData():
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     print(user_id)
-    return url_for("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
+    return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
+    # return url_for("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
     #return "success"
+
+@app.route('/renderMyData/<user_id>')
+def renderMyData(user_id):
+    res = DataAccess.fetch_data_all(user_id = user_id)
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
     app.run(debug=True)
