@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import random
 
 from data_base_init import db, Data
 
@@ -74,3 +75,9 @@ class DataAccess:
                 "created_by": data.created_by
             }
         return json.dumps(data_dict, ensure_ascii=False)
+    
+    # ランダムに1つ課題IDを取得
+    def random_fetch_id() -> str:
+        data_list = Data.query.all()
+        data = data_list[random.randint(0, len(data_list) - 1)]
+        return data.id
