@@ -12,7 +12,7 @@ post_button.addEventListener('click', () => {
     fd.append("kadai_id", kadai_id);
 
     // 送信先 : /remove_data
-    fetch("/remove_data", { method: "POST", body: fd }).then(response => {
+    fetch("/delete_data", { method: "POST", body: fd }).then(response => {
         response.text().then(data => {
             //console.log(data);
         });
