@@ -55,9 +55,11 @@ def add_data():
     return render_template("add_page.html") # これも仮
 
 
-@app.route("/fetch_all_data")  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/fetch_all_data", methods=["POST"])
 def fetch_all_data():
-    res = DataAccess.fetch_data_all(user_id = 'test_user1')
+    user_id = request.values['userID']
+    
+    res = DataAccess.fetch_data_all(user_id = user_id)
     return jsonify(res)
 
 @app.route("/detail_edit_page")
@@ -91,7 +93,7 @@ def API_test_FetchAll():
     return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
 
 # for debug fetchall:2
-@app.route("/API_test_FetchMyData",methods=["POST"])
+@app.route("/API_test_FetchMyData", methods=["POST"])
 def API_test_FetchMyData():
     user_id = request.values['userID']
 
@@ -104,6 +106,7 @@ def API_test_FetchMyData():
     # return url_for("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
     #return "success"
 
+# for debug fetchall:3
 @app.route('/renderMyData/<user_id>')
 def renderMyData(user_id):
     res = DataAccess.fetch_data_all(user_id = user_id)
@@ -111,6 +114,7 @@ def renderMyData(user_id):
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
