@@ -55,7 +55,7 @@ def add_data():
     return render_template("add_page.html") # これも仮
 
 
-@app.route("/delete_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/delete_data", methods=["POST"])
 def remove_data():
     # データを削除する関数 #
 
