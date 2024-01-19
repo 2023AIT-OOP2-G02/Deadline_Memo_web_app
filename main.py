@@ -55,6 +55,18 @@ def add_data():
     return render_template("add_page.html") # これも仮
 
 
+@app.route("/delete_data", methods=["POST"])
+def remove_data():
+    # データを削除する関数 #
+
+    kadai_id = request.values["kadai_id"]
+
+    # データをDBから削除
+    DataAccess.delete_data(kadai_id)
+
+    return 'success'
+
+
 @app.route("/detail_edit_page")
 def detail_edit_page():
     return render_template("detail_edit_page.html")
@@ -74,6 +86,11 @@ def search_page():
 @app.route("/API_test_DatabaseAdd")
 def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
+
+# for debug
+@app.route("/API_test_DatabaseDelete")
+def API_test_DatabaseDelete():
+    return render_template("API_test_DatabaseDelete.html")
 
 
 if __name__ == "__main__":
