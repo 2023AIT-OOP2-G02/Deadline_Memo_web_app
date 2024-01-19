@@ -9,10 +9,9 @@ view_mydata.addEventListener('click', () => {
 	let fd = new FormData();
 	fd.append("userID", userID);
 
-    fetch("/API_test_FetchMyData", {method: "POST", body: fd}).then(response => {
+    fetch("/API_test_FetchMyData", { method: "POST", body: fd }).then(response => {
         response.json().then(data => {
             window.location.href=data.redirect;
-            console.log(success)
         });
     });
 })
