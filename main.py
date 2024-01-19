@@ -62,6 +62,7 @@ def fetch_all_data():
     res = DataAccess.fetch_data_all(user_id = user_id)
     return jsonify(res)
 
+
 @app.route("/delete_data", methods=["POST"])
 def remove_data():
     # データを削除する関数 #
@@ -115,8 +116,6 @@ def API_test_FetchMyData():
     keys = list(data_dict.keys())
     print(user_id)
     return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
-    # return url_for("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
-    #return "success"
 
 # for debug fetchall:3
 @app.route('/renderMyData/<user_id>')
@@ -126,6 +125,7 @@ def renderMyData(user_id):
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+
 # for debug
 @app.route("/API_test_DatabaseDelete")
 def API_test_DatabaseDelete():
