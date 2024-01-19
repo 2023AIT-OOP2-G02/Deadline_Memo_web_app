@@ -55,7 +55,7 @@ def add_data():
     return render_template("add_page.html") # これも仮
 
 
-@app.route("/remove_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/delete_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
 def remove_data():
     # データを削除する関数 #
 
@@ -88,9 +88,9 @@ def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
 
 # for debug
-@app.route("/API_test_Database_delete")
-def API_test_Database_delete():
-    return render_template("API_test_Database_delete.html")
+@app.route("/API_test_DatabaseDelete")
+def API_test_DatabaseDelete():
+    return render_template("API_test_DatabaseDelete.html")
 
 
 if __name__ == "__main__":
