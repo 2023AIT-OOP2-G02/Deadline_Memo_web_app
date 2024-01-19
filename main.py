@@ -31,6 +31,7 @@ def add_data():
     subject = request.form.get('subject', None)
     memo = request.form.get('memo', None)
     star_num = request.form.get('star_num', None)
+    created_by = request.form.get('created_by', None)
 
     # デバッグ用
     print(f"title: {title}")
@@ -38,6 +39,7 @@ def add_data():
     print(f"subject: {subject}")
     print(f"memo: {memo}")
     print(f"star_num: {star_num}")
+    print(f"created_by: {created_by}")
 
     # エラー用のメッセージを格納する変数
     message = ""
@@ -53,6 +55,8 @@ def add_data():
         memo += "memoが未入力です。\n"
     if star_num == "":
         message += "star_numが未入力です。\n"
+    if created_by == "":
+        message += "created_byが未入力です。\n"
 
     if len(message) > 0:
         return jsonify({
@@ -68,17 +72,18 @@ def add_data():
     # POSTによって送られてくるデータに課題IDを添える
     # TODO: memo_imgを追加する
     # TODO: created_byを追加する
-    # TODO: deadlineの時刻を省く(DBが受け取る構造を変更する)
+    # TODO: deadlineの時刻どうしよ
     data_json = f'''{{
         "{kadai_id}": {{
             "title": "{title}",
             "deadline": "{deadline} 00:00:00",
             "subject": "{subject}",
+            "star_num": {star_num},
             "memo": "{memo}",
             "memo_img": "testdayo.jpg",
             "created_at": "{now}",
             "updated_at": "{now}",
-            "created_by": "test_user1"
+            "created_by": "{created_by}"
         }}
     }}'''
 
@@ -92,7 +97,6 @@ def add_data():
     print("以下のデータの追加を確認：")
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
-
 
     # 送信が完了したらTOPページに戻る
     return render_template("index.html")
