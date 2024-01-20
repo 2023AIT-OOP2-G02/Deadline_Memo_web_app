@@ -59,6 +59,7 @@ export const convert_remaining_time = () => {
             result_time_str += ` ${diff_month}ヶ月`;
         }
     }
+    // TODO: ここから下のelse if()を実装する
     // else if ()・・・
     // else if ()・・・
 
