@@ -3,7 +3,7 @@ import random
 import threading
 from data_base_init import Data, db
 from flask_startup import app
-from flask import Flask, request, render_template, jsonify, Blueprint
+from flask import Flask, request, render_template, jsonify, Blueprint, url_for,redirect
 import json  # Python標準のJSONライブラリを読み込んで、データの保存等に使用する
 
 from DataAccess import DataAccess
@@ -124,7 +124,6 @@ def remove_data():
     return render_template("index.html")
 
 
-
 @app.route("/search_page")
 def search_page():
     return render_template("search_page.html")
@@ -136,6 +135,67 @@ def search_data():
 
     return render_template("index.html")
 
+
+@app.route("/fetch_all_data", methods=["POST"])
+def fetch_all_data():
+    user_id = request.values['userID']
+    
+    res = DataAccess.fetch_data_all(user_id = user_id)
+    return jsonify(res)
+
+
+@app.route("/delete_data", methods=["POST"])
+def delete_data():
+    # データを削除する関数 #
+
+    kadai_id = request.values["kadai_id"]
+
+    # データをDBから削除
+    DataAccess.delete_data(kadai_id)
+
+    return 'success'
+
+
+# for debug
+@app.route("/API_test_DatabaseAdd")
+def API_test_DatabaseAdd():
+    return render_template("API_test_DatabaseAdd.html")
+
+# for debug fetchall:1
+@app.route("/API_test_FetchAll")
+def API_test_FetchAll():
+    res = DataAccess.fetch_data_all(user_id = 'test_user1')
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    # print(res)
+    return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
+
+# for debug fetchall:2
+@app.route("/API_test_FetchMyData", methods=["POST"])
+def API_test_FetchMyData():
+    user_id = request.values['userID']
+
+    res = DataAccess.fetch_data_all(user_id)
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    print(user_id)
+    return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
+
+# for debug fetchall:3
+@app.route('/renderMyData/<user_id>')
+def renderMyData(user_id):
+    res = DataAccess.fetch_data_all(user_id = user_id)
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+
+# for debug
+@app.route("/API_test_DatabaseDelete")
+def API_test_DatabaseDelete():
+    return render_template("API_test_DatabaseDelete.html")
 
 
 if __name__ == "__main__":
