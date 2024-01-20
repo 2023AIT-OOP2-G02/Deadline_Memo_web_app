@@ -1,3 +1,4 @@
+import datetime
 import random
 import threading
 from data_base_init import Data, db
@@ -20,35 +21,80 @@ def add_page():
     return render_template("add_page.html")
 
 
-@app.route("/add_data")  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/add_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
 def add_data():
     # 課題追加ボタン #
+
+    # 検索パラメータの取得
+    title = request.form.get('title', None)
+    deadline = request.form.get('deadline', None)
+    subject = request.form.get('subject', None)
+    memo = request.form.get('memo', None)
+    star_num = request.form.get('star_num', None)
+    created_by = request.form.get('created_by', None)
+
+    # デバッグ用
+    print(f"title: {title}")
+    print(f"deadline: {deadline}")
+    print(f"subject: {subject}")
+    print(f"memo: {memo}")
+    print(f"star_num: {star_num}")
+    print(f"created_by: {created_by}")
+
+    # エラー用のメッセージを格納する変数
+    message = ""
+
+    # 存在しない場合、返すメッセージを増やす
+    if title == "":
+        message += "titleが未入力です。\n"
+    if deadline == "":
+        message += "deadlineが未入力です。\n"
+    if subject == "":
+        message += "subjectが未入力です。\n"
+    if subject == "":
+        memo += "memoが未入力です。\n"
+    if star_num == "":
+        message += "star_numが未入力です。\n"
+    if created_by == "":
+        message += "created_byが未入力です。\n"
+
+    if len(message) > 0:
+        return jsonify({
+            "error": message
+        })
 
     # 課題IDを発行
     kadai_id = generate_id()
 
-    # 仮データ
+    # コンマ秒を省いた現在時刻を取得
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     # POSTによって送られてくるデータに課題IDを添える
-    temp_data_json = f'''{{
+    # TODO: memo_imgを追加する
+    # TODO: created_byを追加する
+    # TODO: deadlineの時刻どうしよ
+    data_json = f'''{{
         "{kadai_id}": {{
-            "title": "課題番号{random.randint(0, 100)}",
-            "deadline": "2022-02-20 00:00:00",
-            "subject": "オブ演",
-            "memo": "感想いっぱい書く必要",
-            "memo_img": "img/mCpcLbPq6pGf4ztYZsrKQi.jpg",
-            "created_at": "2021-01-02 00:00:00",
-            "updated_at": "2021-01-02 00:00:00",
-            "created_by": "test_user1"
+            "title": "{title}",
+            "deadline": "{deadline} 00:00:00",
+            "subject": "{subject}",
+            "star_num": {star_num},
+            "memo": "{memo}",
+            "memo_img": "testdayo.jpg",
+            "created_at": "{now}",
+            "updated_at": "{now}",
+            "created_by": "{created_by}"
         }}
     }}'''
 
-    print(temp_data_json)
+    print(data_json)
 
     # データをDBに追加
-    DataAccess.add_data(temp_data_json)
+    DataAccess.add_data(data_json)
 
     # DBに正常に追加されていることを確認
     # TODO: user_idも表示する
+    print("以下のデータの追加を確認：")
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,55 +17,64 @@
     </div>
     <br>
     <div class="container">
-    <table align="center" class="table table-sm table-bordered border-secondary table-striped">
-            <tr>
-                <th>課題名</th>
-                <td>htmlタグを書く</td>
-            </tr>
-            <tr>
-                <th>締切日</th>
-                <td>
-                    <input type="date" id="limited" name="limited_day" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
+{#        送信フォーム #}
+        <form action="/add_data" method="POST">
+            <table align="center" class="table table-sm table-bordered border-secondary table-striped">
+                <tr>
+                    <th>課題名</th>
+                    <td>
+                        <input required type="text" name="title" placeholder="title">
+                    </td>
+                </tr>
+                <tr>
+                    <th>締切日</th>
+                    <td>
+                        <input required type="date" name="deadline" placeholder="deadline" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>講義名</th>
+                    <td>
+                        <input required type="text" name="subject" placeholder="subject">
+                    </td>
+                </tr>
+                <tr>
+                    <th>重要度</th>
+                    <td>
+                        <div class="rating">
+                            <input class="rating__input hidden--visually" type="radio" id="5-star" name="star_num" value="5" required />
+                            <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
+                            <input class="rating__input hidden--visually" type="radio" id="4-star" name="star_num" value="4" />
+                            <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
+                            <input class="rating__input hidden--visually" type="radio" id="3-star" name="star_num" value="3" />
+                            <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ</span></label>
+                            <input class="rating__input hidden--visually" type="radio" id="2-star" name="star_num" value="2" />
+                            <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
+                            <input class="rating__input hidden--visually" type="radio" id="1-star" name="star_num" value="1" />
+                            <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">詳細（自由メモ）</th>
+                </tr>
+                <td colspan="2">
+                    <textarea name="memo" placeholder="memo" cols="30" rows="10"></textarea>
                 </td>
-            </tr>
-            
-            <tr>
-                <th>講義名</th>
-                <td>オブジェクト演習</td>
-            </tr>
-
-            <tr>
-                <th>重要度</th>
-                <td>
-                    <div class="rating">
-                        <input class="rating__input hidden--visually" type="radio" id="5-star" name="rating" value="5" required />
-                        <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
-                        <input class="rating__input hidden--visually" type="radio" id="4-star" name="rating" value="4" />
-                        <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
-                        <input class="rating__input hidden--visually" type="radio" id="3-star" name="rating" value="3" />
-                        <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ</span></label>
-                        <input class="rating__input hidden--visually" type="radio" id="2-star" name="rating" value="2" />
-                        <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
-                        <input class="rating__input hidden--visually" type="radio" id="1-star" name="rating" value="1" />
-                        <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
-                    </div>
-                </td>
-            </tr>
-
-            <tr>
-                <th colspan="2">詳細（自由メモ）</th>
-            </tr>
-                <td colspan="2">急ぐ</td>
-        </table>
+            </table>
+            <input type="text" id="required-userID" name="created_by" style="display: none">
+            <div align="center">
+                <a href="{{url_for('add_data')}}">
+                    <button type="submit" class="btn btn-primary" >追加</button>
+                </a>
+            </div>
+        </form>
     </div>
     <br>
     <div align="right">
         <button type="button" class="btn btn-primary">画像追加</button>
     </div>
-    <div align="center">
-        <a href="{{url_for('add_data')}}">
-            <button type="button" class="btn btn-primary" >追加</button> 
-        </a>
-    </div>
+    <script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
+
 </body>
 </html>

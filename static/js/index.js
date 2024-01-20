@@ -1,4 +1,4 @@
-import { getUserID } from "./func.js";
+import { getUserID } from "./get_user_id.js";
 
 const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
 const date = datetime.split(' ')[0];
