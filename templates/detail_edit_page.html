@@ -4,14 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>details and editing</title>
+    <link rel="stylesheet" href="detail_edit_page.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.jp/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <h1>details and editing</h1>
-    </header>
-    
+    <br>
+    <div align="static">
+        <button type="button" class="btn btn-secondary">戻る</button>
+    </div>
+    <br>
+    <div class="container">
+    <table align="center" class="table table-sm table-bordered border-secondary table-striped">
+        <tr>
+            <th>課題名</th>
+            <td>htmlタグを書く</td>
+        </tr>
+
+        <tr>
+            <th>締切日</th>
+            <td>
+                <input type="date" id="limited" name="limited_day" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
+            </td>
+        </tr>
+            
+        <tr>
+            <th>講義名</th>
+            <td>オブジェクト演習</td>
+        </tr>
+
+        <tr>
+            <th>重要度</th>
+            <td>
+                <div class="rating">
+                    <input class="rating__input hidden--visually" type="radio" id="5-star" name="rating" value="5" required />
+                    <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
+                    <input class="rating__input hidden--visually" type="radio" id="4-star" name="rating" value="4" />
+                    <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
+                    <input class="rating__input hidden--visually" type="radio" id="3-star" name="rating" value="3" />
+                    <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ/span></label>
+                    <input class="rating__input hidden--visually" type="radio" id="2-star" name="rating" value="2" />
+                    <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
+                    <input class="rating__input hidden--visually" type="radio" id="1-star" name="rating" value="1" />
+                    <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
+                  </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th colspan="2">詳細（自由メモ）</th>
+        </tr>
+            <td colspan="2">急ぐ</td>
+        <tr>
+
+        </tr>
+    </table>
+    <br><br>
+    <table border="1" align="center">
+        <td colspan="2">画像エリア</td>
+    </table>
+
+    <div align="center">
+        <a href="{{ url_for("detail_edit_data") }}">
+            <button type="submit">編集</button>
+        </a>
+    </div>
 </body>
 
 </html>
