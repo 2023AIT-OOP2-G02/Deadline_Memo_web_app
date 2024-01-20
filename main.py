@@ -111,7 +111,7 @@ def fetch_all_data():
 
 
 @app.route("/delete_data", methods=["POST"])
-def remove_data():
+def delete_data():
     # データを削除する関数 #
 
     kadai_id = request.values["kadai_id"]
