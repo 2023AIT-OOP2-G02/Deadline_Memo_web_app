@@ -144,10 +144,16 @@ def remove_data():
     return render_template("index.html")
 
 
-
 @app.route("/search_page")
 def search_page():
     return render_template("search_page.html")
+
+
+@app.route("/search_data")
+def search_data():
+    # 課題検索ボタン #
+
+    return render_template("index.html")
 
 
 # for debug
@@ -190,12 +196,6 @@ def renderMyData(user_id):
 @app.route("/API_test_DatabaseDelete")
 def API_test_DatabaseDelete():
     return render_template("API_test_DatabaseDelete.html")
-@app.route("/search_data")
-def search_data():
-    # 課題検索ボタン #
-
-    return render_template("index.html")
-
 
 
 if __name__ == "__main__":
