@@ -27,7 +27,8 @@ def add_data():
 
     # 検索パラメータの取得
     title = request.form.get('title', None)
-    deadline = request.form.get('deadline', None)
+    deadline_date = request.form.get('deadline_date', None)
+    deadline_time = request.form.get('deadline_time', None)
     subject = request.form.get('subject', None)
     memo = request.form.get('memo', None)
     star_num = request.form.get('star_num', None)
@@ -35,7 +36,8 @@ def add_data():
 
     # デバッグ用
     print(f"title: {title}")
-    print(f"deadline: {deadline}")
+    print(f"deadline_date: {deadline_date}")
+    print(f"deadline_time: {deadline_time}")
     print(f"subject: {subject}")
     print(f"memo: {memo}")
     print(f"star_num: {star_num}")
@@ -47,8 +49,10 @@ def add_data():
     # 存在しない場合、返すメッセージを増やす
     if title == "":
         message += "titleが未入力です。\n"
-    if deadline == "":
-        message += "deadlineが未入力です。\n"
+    if deadline_date == "":
+        message += "deadline_dateが未入力です。\n"
+    if deadline_time == "":
+        message += "deadline_timeが未入力です。\n"
     if subject == "":
         message += "subjectが未入力です。\n"
     if subject == "":
@@ -71,12 +75,10 @@ def add_data():
 
     # POSTによって送られてくるデータに課題IDを添える
     # TODO: memo_imgを追加する
-    # TODO: created_byを追加する
-    # TODO: deadlineの時刻どうしよ
     data_json = f'''{{
         "{kadai_id}": {{
             "title": "{title}",
-            "deadline": "{deadline} 00:00:00",
+            "deadline": "{deadline_date} {deadline_time}:00",
             "subject": "{subject}",
             "star_num": {star_num},
             "memo": "{memo}",
