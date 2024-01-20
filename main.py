@@ -175,12 +175,7 @@ def API_test_FetchAll():
 @app.route("/API_test_FetchMyData", methods=["POST"])
 def API_test_FetchMyData():
     user_id = request.values['userID']
-
-    res = DataAccess.fetch_data_all(user_id)
-
-    data_dict = json.loads(res)
-    keys = list(data_dict.keys())
-    print(user_id)
+    # print(user_id)
     return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
 
 # for debug fetchall:3
