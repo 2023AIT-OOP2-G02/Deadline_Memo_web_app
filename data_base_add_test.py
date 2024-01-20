@@ -8,20 +8,23 @@ if __name__ == "__main__":
             "title": "test1",
             "deadline": "2022-02-20 00:00:00",
             "subject": "オブ演",
+            "star_num": 3,
             "memo": "感想いっぱい書く必要",
             "memo_img": "img/mCpcLbPq6pGf4ztYZsrKQi.jpg",
             "created_at": "2021-01-02 00:00:00",
             "updated_at": "2021-01-02 00:00:00",
-            "created_by": "test_user1"
+            "created_by": "32ce6c36-5aeb-4a44-871c-209e14cbd272"
         }
     }'''
 
     with app.app_context():
         DataAccess.add_data(data_json)
 
+        
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().title)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().deadline)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().subject)
+        print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().star_num)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().memo)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().memo_img)
         print(Data.query.filter_by(id='fDja8VuaVy4BGNfXDi1gha').first().created_at)

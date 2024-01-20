@@ -17,6 +17,7 @@ class Data(db.Model):
     title = db.Column(db.String(120))
     deadline = db.Column(db.DateTime)
     subject = db.Column(db.String(120))
+    star_num = db.Column(db.Integer)
     memo = db.Column(db.String(2000))
     memo_img = db.Column(db.String(120))  # メモの画像のファイル名をuuidで保存
     created_by = db.Column(db.String(120))

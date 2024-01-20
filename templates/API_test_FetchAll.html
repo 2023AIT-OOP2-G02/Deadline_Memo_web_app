@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API_test</title>
+    <style>
+        .input-field {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-field label {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>API_test デバッグ用のページです</h1>
+    <h1>データベースのデータを全取得するAPIのテスト</h1>
+    <table border="1">
+        <tr>
+            <th>課題ID</th>
+            <th>タイトル</th>
+            <th>deadline</th>
+            <th>subject</th>
+            <th>star_num</th>
+            <th>memo</th>
+            <th>memo_img</th>
+            <th>created_at</th>
+            <th>updated_at</th>
+            <th>created_by</th>
+        </tr>
+
+        {% for key in keys %}
+        <tr>
+            <td>{{key}}</td>
+            <td>{{data_dict[key]["title"]}}</td>
+            <td>{{data_dict[key]["deadline"]}}</td>
+            <td>{{data_dict[key]["subject"]}}</td>
+            <td>{{data_dict[key]["star_num"]}}</td>
+            <td>{{data_dict[key]["memo"]}}</td>
+            <td>{{data_dict[key]["memo_img"]}}</td>
+            <td>{{data_dict[key]["created_at"]}}</td>
+            <td>{{data_dict[key]["updated_at"]}}</td>
+            <td>{{data_dict[key]["created_by"]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button id="view_mydata">自分のIDのデータを表示</button>
+    <div>以下はデバッグ用です</div>
+    <div id="view_jsonData"></div>
+</body>
+<script type="module" src="{{url_for('static', filename='js/API_test_FetchAll.js')}}"></script>
+
+</html>

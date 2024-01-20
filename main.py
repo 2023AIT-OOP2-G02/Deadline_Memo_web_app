@@ -1,8 +1,9 @@
+import datetime
 import random
 import threading
 from data_base_init import Data, db
 from flask_startup import app
-from flask import Flask, request, render_template, jsonify, Blueprint
+from flask import Flask, request, render_template, jsonify, Blueprint, url_for,redirect
 import json  # Python標準のJSONライブラリを読み込んで、データの保存等に使用する
 
 from DataAccess import DataAccess
@@ -20,35 +21,82 @@ def add_page():
     return render_template("add_page.html")
 
 
-@app.route("/add_data")  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/add_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
 def add_data():
     # 課題追加ボタン #
+
+    # 検索パラメータの取得
+    title = request.form.get('title', None)
+    deadline_date = request.form.get('deadline_date', None)
+    deadline_time = request.form.get('deadline_time', None)
+    subject = request.form.get('subject', None)
+    memo = request.form.get('memo', None)
+    star_num = request.form.get('star_num', None)
+    created_by = request.form.get('created_by', None)
+
+    # デバッグ用
+    print(f"title: {title}")
+    print(f"deadline_date: {deadline_date}")
+    print(f"deadline_time: {deadline_time}")
+    print(f"subject: {subject}")
+    print(f"memo: {memo}")
+    print(f"star_num: {star_num}")
+    print(f"created_by: {created_by}")
+
+    # エラー用のメッセージを格納する変数
+    message = ""
+
+    # 存在しない場合、返すメッセージを増やす
+    if title == "":
+        message += "titleが未入力です。\n"
+    if deadline_date == "":
+        message += "deadline_dateが未入力です。\n"
+    if deadline_time == "":
+        message += "deadline_timeが未入力です。\n"
+    if subject == "":
+        message += "subjectが未入力です。\n"
+    if subject == "":
+        memo += "memoが未入力です。\n"
+    if star_num == "":
+        message += "star_numが未入力です。\n"
+    if created_by == "":
+        message += "created_byが未入力です。\n"
+
+    if len(message) > 0:
+        return jsonify({
+            "error": message
+        })
 
     # 課題IDを発行
     kadai_id = generate_id()
 
-    # 仮データ
+    # コンマ秒を省いた現在時刻を取得
+    now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
     # POSTによって送られてくるデータに課題IDを添える
-    temp_data_json = f'''{{
+    # TODO: memo_imgを追加する
+    data_json = f'''{{
         "{kadai_id}": {{
-            "title": "課題番号{random.randint(0, 100)}",
-            "deadline": "2022-02-20 00:00:00",
-            "subject": "オブ演",
-            "memo": "感想いっぱい書く必要",
-            "memo_img": "img/mCpcLbPq6pGf4ztYZsrKQi.jpg",
-            "created_at": "2021-01-02 00:00:00",
-            "updated_at": "2021-01-02 00:00:00",
-            "created_by": "test_user1"
+            "title": "{title}",
+            "deadline": "{deadline_date} {deadline_time}:00",
+            "subject": "{subject}",
+            "star_num": {star_num},
+            "memo": "{memo}",
+            "memo_img": "testdayo.jpg",
+            "created_at": "{now}",
+            "updated_at": "{now}",
+            "created_by": "{created_by}"
         }}
     }}'''
 
-    print(temp_data_json)
+    print(data_json)
 
     # データをDBに追加
-    DataAccess.add_data(temp_data_json)
+    DataAccess.add_data(data_json)
 
     # DBに正常に追加されていることを確認
     # TODO: user_idも表示する
+    print("以下のデータの追加を確認：")
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
@@ -78,7 +126,6 @@ def remove_data():
     return render_template("index.html")
 
 
-
 @app.route("/search_page")
 def search_page():
     return render_template("search_page.html")
@@ -90,6 +137,62 @@ def search_data():
 
     return render_template("index.html")
 
+
+@app.route("/fetch_all_data", methods=["POST"])
+def fetch_all_data():
+    user_id = request.values['userID']
+    
+    res = DataAccess.fetch_data_all(user_id = user_id)
+    return jsonify(res)
+
+
+@app.route("/delete_data", methods=["POST"])
+def delete_data():
+    # データを削除する関数 #
+
+    kadai_id = request.values["kadai_id"]
+
+    # データをDBから削除
+    DataAccess.delete_data(kadai_id)
+
+    return 'success'
+
+
+# for debug
+@app.route("/API_test_DatabaseAdd")
+def API_test_DatabaseAdd():
+    return render_template("API_test_DatabaseAdd.html")
+
+# for debug fetchall:1
+@app.route("/API_test_FetchAll")
+def API_test_FetchAll():
+    res = DataAccess.fetch_data_all(user_id = 'test_user1')
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    # print(res)
+    return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
+
+# for debug fetchall:2
+@app.route("/API_test_FetchMyData", methods=["POST"])
+def API_test_FetchMyData():
+    user_id = request.values['userID']
+    # print(user_id)
+    return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
+
+# for debug fetchall:3
+@app.route('/renderMyData/<user_id>')
+def renderMyData(user_id):
+    res = DataAccess.fetch_data_all(user_id = user_id)
+
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+
+# for debug
+@app.route("/API_test_DatabaseDelete")
+def API_test_DatabaseDelete():
+    return render_template("API_test_DatabaseDelete.html")
 
 
 if __name__ == "__main__":

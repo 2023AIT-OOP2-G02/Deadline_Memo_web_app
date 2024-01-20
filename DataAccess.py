@@ -16,6 +16,7 @@ class DataAccess:
         title: str = data_dict[id]["title"]
         deadline: datetime = datetime.strptime(data_dict[id]["deadline"], '%Y-%m-%d %H:%M:%S')
         subject: str = data_dict[id]["subject"]
+        star_num: int = data_dict[id]["star_num"]
         memo: str = data_dict[id]["memo"]
         memo_img: str = data_dict[id]["memo_img"]
         created_at: datetime = datetime.strptime(data_dict[id]["created_at"], '%Y-%m-%d %H:%M:%S')  # この値は使わない
@@ -23,7 +24,7 @@ class DataAccess:
         created_by: str = data_dict[id]["created_by"]  # user_id
 
         # データベースにデータを追加
-        data = Data(id=id, title=title, deadline=deadline, subject=subject, memo=memo, memo_img=memo_img,
+        data = Data(id=id, title=title, deadline=deadline, subject=subject, star_num = star_num, memo=memo, memo_img=memo_img,
                     created_by=created_by)
         db.session.add(data)
         db.session.commit()
@@ -43,6 +44,7 @@ class DataAccess:
         title: str = data_dict[id]["title"]
         deadline: datetime = datetime.strptime(data_dict[id]["deadline"], '%Y-%m-%d %H:%M:%S')
         subject: str = data_dict[id]["subject"]
+        star_num: int = data_dict[id]["star_num"]
         memo: str = data_dict[id]["memo"]
         memo_img: str = data_dict[id]["memo_img"]
         created_at: datetime = datetime.strptime(data_dict[id]["created_at"], '%Y-%m-%d %H:%M:%S')  # この値は使わない
@@ -54,6 +56,7 @@ class DataAccess:
             data.title = title
             data.deadline = deadline
             data.subject = subject
+            data.star_num = star_num
             data.memo = memo
             data.memo_img = memo_img
             data.created_by = created_by
@@ -68,6 +71,7 @@ class DataAccess:
                 "title": data.title,
                 "deadline": data.deadline.strftime('%Y-%m-%d %H:%M:%S'),
                 "subject": data.subject,
+                "star_num": data.star_num,
                 "memo": data.memo,
                 "memo_img": data.memo_img,
                 "created_at": data.created_at.strftime('%Y-%m-%d %H:%M:%S'),
