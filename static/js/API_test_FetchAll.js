@@ -1,4 +1,4 @@
-import { getUserID } from "./func.js";
+import { getUserID } from "./get_user_id.js";
 
 const view_mydata = document.getElementById('view_mydata');
 const userID = getUserID();

@@ -1,5 +1,3 @@
-import { getUserID } from "./func.js";
-
 const post_button = document.getElementById('post');
 const input_kadai_id = document.getElementById('kadai_id');
 
