@@ -102,26 +102,6 @@ def add_data():
     return render_template("index.html")
 
 
-@app.route("/fetch_all_data", methods=["POST"])
-def fetch_all_data():
-    user_id = request.values['userID']
-    
-    res = DataAccess.fetch_data_all(user_id = user_id)
-    return jsonify(res)
-
-
-@app.route("/delete_data", methods=["POST"])
-def delete_data():
-    # データを削除する関数 #
-
-    kadai_id = request.values["kadai_id"]
-
-    # データをDBから削除
-    DataAccess.delete_data(kadai_id)
-
-    return 'success'
-
-
 @app.route("/detail_edit_page")
 def detail_edit_page():
     return render_template("detail_edit_page.html")
@@ -154,6 +134,26 @@ def search_data():
     # 課題検索ボタン #
 
     return render_template("index.html")
+
+
+@app.route("/fetch_all_data", methods=["POST"])
+def fetch_all_data():
+    user_id = request.values['userID']
+    
+    res = DataAccess.fetch_data_all(user_id = user_id)
+    return jsonify(res)
+
+
+@app.route("/delete_data", methods=["POST"])
+def delete_data():
+    # データを削除する関数 #
+
+    kadai_id = request.values["kadai_id"]
+
+    # データをDBから削除
+    DataAccess.delete_data(kadai_id)
+
+    return 'success'
 
 
 # for debug
