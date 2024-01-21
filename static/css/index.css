@@ -17,8 +17,9 @@
 }
 
 .button3{
-    display: flex;
+    /*display: flex;*/
     justify-content: flex-end;
+    display: inline;
 }
 
 .table-scrool {

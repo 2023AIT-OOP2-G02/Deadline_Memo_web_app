@@ -152,10 +152,20 @@ def search_page():
     return render_template("search_page.html")
 
 
+@app.route("/sort_page")
+def sort_page():
+    return render_template("sort_page.html")
+
+
 @app.route("/search_data")
 def search_data():
     # 課題検索ボタン #
+    return render_template("fetch_top_page.html")
 
+
+@app.route("/sort_data")
+def sort_data():
+    # 課題検索ボタン #
     return render_template("fetch_top_page.html")
 
 
