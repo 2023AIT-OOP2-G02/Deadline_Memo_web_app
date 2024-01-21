@@ -3,22 +3,35 @@ import random
 import threading
 from data_base_init import Data, db
 from flask_startup import app
-from flask import Flask, request, render_template, jsonify, Blueprint, url_for,redirect
+from flask import Flask, request, render_template, jsonify, Blueprint, url_for, redirect
 import json  # Python標準のJSONライブラリを読み込んで、データの保存等に使用する
 
 from DataAccess import DataAccess
 from generate_id import generate_id
 
 
-# http://127.0.0.1:5000/
 @app.route('/')
 def index():
-    #user_id = request.values['userID']
-    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    return render_template("fetch_top_page.html")
+
+
+@app.route("/fetch_top_data", methods=["POST"])
+def fetch_my_all_data():
+    user_id = request.values['userID']
+    print(user_id)
+    return jsonify({'redirect': url_for("render_top_data", user_id=user_id)})
+
+
+# http://127.0.0.1:5000/
+@app.route('/render_top_data/<user_id>')
+def render_top_data(user_id):
+    res = DataAccess.fetch_data_all(user_id)
     # res = DataAccess.fetch_data_all(user_id = user_id)
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
-    return render_template("index.html",keys=keys,data_dict=data_dict)
+    return render_template("index.html", keys=keys, data_dict=data_dict)
+
+
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
 
 @app.route("/add_page")
@@ -146,8 +159,8 @@ def search_data():
 @app.route("/fetch_all_data", methods=["POST"])
 def fetch_all_data():
     user_id = request.values['userID']
-    
-    res = DataAccess.fetch_data_all(user_id = user_id)
+
+    res = DataAccess.fetch_data_all(user_id=user_id)
     return jsonify(res)
 
 
@@ -168,31 +181,35 @@ def delete_data():
 def API_test_DatabaseAdd():
     return render_template("API_test_DatabaseAdd.html")
 
+
 # for debug fetchall:1
 @app.route("/API_test_FetchAll")
 def API_test_FetchAll():
-    res = DataAccess.fetch_data_all(user_id = 'test_user1')
+    res = DataAccess.fetch_data_all(user_id='test_user1')
 
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     # print(res)
-    return render_template("API_test_FetchAll.html",keys = keys,data_dict = data_dict)
+    return render_template("API_test_FetchAll.html", keys=keys, data_dict=data_dict)
+
 
 # for debug fetchall:2
 @app.route("/API_test_FetchMyData", methods=["POST"])
 def API_test_FetchMyData():
     user_id = request.values['userID']
     # print(user_id)
-    return jsonify({'redirect':url_for("renderMyData", user_id=user_id)})
+    return jsonify({'redirect': url_for("renderMyData", user_id=user_id)})
+
 
 # for debug fetchall:3
 @app.route('/renderMyData/<user_id>')
 def renderMyData(user_id):
-    res = DataAccess.fetch_data_all(user_id = user_id)
+    res = DataAccess.fetch_data_all(user_id=user_id)
 
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
-    return render_template("API_test_FetchAll.html",keys=keys,data_dict=data_dict)
+    return render_template("API_test_FetchAll.html", keys=keys, data_dict=data_dict)
+
 
 # for debug
 @app.route("/API_test_DatabaseDelete")
