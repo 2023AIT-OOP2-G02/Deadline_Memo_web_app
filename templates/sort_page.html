@@ -23,46 +23,19 @@
 <div class="container">
     <table align="center" class="table table-sm table-bordered border-secondary table-striped">
         <tr>
-            <th>課題名</th>
-            <td>htmlタグを書く</td>
-        </tr>
-
-        <tr>
-            <th>締切日</th>
+            <th>並び替え条件</th>
             <td>
-                <input type="date" id="limited" name="limited_day" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
+                <input type="radio" name="sort" value="test">締切日
+                <input type="radio" name="sort" value="test">重要度
+                <input type="radio" name="sort" value="test">課題追加日(未実装なら削除)
             </td>
         </tr>
-
         <tr>
-            <th>講義名</th>
-            <td>オブジェクト演習</td>
-        </tr>
-
-        <tr>
-            <th>重要度</th>
+            <th>並び順</th>
             <td>
-                <div class="rating">
-                    <input class="rating__input hidden--visually" type="radio" id="5-star" name="rating" value="5" required />
-                    <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
-                    <input class="rating__input hidden--visually" type="radio" id="4-star" name="rating" value="4" />
-                    <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
-                    <input class="rating__input hidden--visually" type="radio" id="3-star" name="rating" value="3" />
-                    <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ</span></label>
-                    <input class="rating__input hidden--visually" type="radio" id="2-star" name="rating" value="2" />
-                    <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
-                    <input class="rating__input hidden--visually" type="radio" id="1-star" name="rating" value="1" />
-                    <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
-                </div>
+                <input type="radio" name="sort" value="up">昇順
+                <input type="radio" name="sort" value="down">降順
             </td>
-        </tr>
-        <th>ソート</th>
-        <td>
-            <input type="radio" name="sort" value="up">昇順
-            <input type="radio" name="sort" value="down">降順
-        </td>
-        <tr>
-
         </tr>
     </table>
     <div align="center">
