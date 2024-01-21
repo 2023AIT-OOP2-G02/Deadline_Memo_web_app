@@ -13,8 +13,13 @@ from generate_id import generate_id
 # http://127.0.0.1:5000/
 @app.route('/')
 def index():
-    return render_template("index.html")
-
+    #user_id = request.values['userID']
+    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    # res = DataAccess.fetch_data_all(user_id = user_id)
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    return render_template("index.html",keys=keys,data_dict=data_dict)
+# res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
 
 @app.route("/add_page")
 def add_page():
