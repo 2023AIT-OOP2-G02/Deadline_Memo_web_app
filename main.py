@@ -124,10 +124,9 @@ def add_data():
 
 @app.route("/detail_edit_page/<kadai_id>", methods=["GET"])
 def detail_edit_page(kadai_id):
-    print(kadai_id)
     # TODO:課題IDから課題の詳細を取得
-
-    return render_template("detail_edit_page.html")
+    kadai = Data.query.get(kadai_id)
+    return render_template("detail_edit_page.html",kadai=kadai)
 
 
 @app.route("/detail_edit_data")

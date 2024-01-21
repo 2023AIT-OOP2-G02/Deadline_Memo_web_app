@@ -27,35 +27,35 @@
                 <tr>
                     <th>課題名</th>
                     <td>
-                        <input required type="text" name="title" placeholder="title">
+                        <input required type="text" name="title" value="{{kadai.title}}">
                     </td>
                 </tr>
                 <tr>
                     <th>締切</th>
                     <td>
-                        <input required type="date" name="deadline_date" placeholder="deadline" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
-                        <input type="time" name="deadline_time" value="00:00">
+                        <input required type="date" name="deadline_date" value="{{kadai.deadline.date()}}" min="1900-01-01" pattern="\d{4}-\d{2}-\d{2}">
+                        <input type="time" name="deadline_time" value="{{kadai.deadline.time()}}">
                     </td>
                 </tr>
                 <tr>
                     <th>講義名</th>
                     <td>
-                        <input required type="text" name="subject" placeholder="subject">
+                        <input required type="text" name="subject" value="{{kadai.subject}}">
                     </td>
                 </tr>
                 <tr>
                     <th>重要度</th>
                     <td>
                         <div class="rating">
-                            <input class="rating__input hidden--visually" type="radio" id="5-star" name="star_num" value="5" required />
+                            <input class="rating__input hidden--visually" type="radio" id="5-star" name="star_num" value="5" {{ "checked" if kadai.star_num == 5 else "" }} required/>
                             <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
-                            <input class="rating__input hidden--visually" type="radio" id="4-star" name="star_num" value="4" />
+                            <input class="rating__input hidden--visually" type="radio" id="4-star" name="star_num" value="4" {{ "checked" if kadai.star_num == 4 else "" }}/>
                             <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
-                            <input class="rating__input hidden--visually" type="radio" id="3-star" name="star_num" value="3" />
+                            <input class="rating__input hidden--visually" type="radio" id="3-star" name="star_num" value="3" {{ "checked" if kadai.star_num == 3 else "" }}/>
                             <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ</span></label>
-                            <input class="rating__input hidden--visually" type="radio" id="2-star" name="star_num" value="2" />
+                            <input class="rating__input hidden--visually" type="radio" id="2-star" name="star_num" value="2" {{ "checked" if kadai.star_num == 2 else "" }}/>
                             <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
-                            <input class="rating__input hidden--visually" type="radio" id="1-star" name="star_num" value="1" />
+                            <input class="rating__input hidden--visually" type="radio" id="1-star" name="star_num" value="1" {{ "checked" if kadai.star_num == 1 else "" }}/>
                             <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
                         </div>
                     </td>
@@ -64,7 +64,7 @@
                     <th colspan="2">詳細（自由メモ）</th>
                 </tr>
                 <td colspan="2">
-                    <textarea class="textareanone" name="memo" placeholder="memo"></textarea>
+                    <textarea class="textareanone" name="memo">{{kadai.memo}}</textarea>
                 </td>
             </table>
             <input type="text" id="required-userID" name="created_by" style="display: none">
