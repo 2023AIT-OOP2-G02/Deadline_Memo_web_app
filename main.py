@@ -165,7 +165,7 @@ def search_data():
 
 @app.route("/sort_data")
 def sort_data():
-    # 課題検索ボタン #
+    # 課題並び替えボタン #
     return render_template("fetch_top_page.html")
 
 
