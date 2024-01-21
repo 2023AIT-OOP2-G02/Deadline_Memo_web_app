@@ -35,6 +35,7 @@ class DataAccess:
         db.session.add(data)
         db.session.commit()
 
+
     # データを削除する関数
     def delete_data(id: str):
         """データベースからデータを削除する関数
@@ -47,6 +48,7 @@ class DataAccess:
         if data:
             db.session.delete(data)
             db.session.commit()
+
 
     # データを更新する関数
     def update_data(data_json: str):  # 例外処理が必要かも
@@ -80,6 +82,7 @@ class DataAccess:
             data.created_by = created_by
             db.session.commit()
 
+
     # データを取得する関数
     def fetch_data_all(user_id: str) -> str:  # json形式で返す
         """指定したユーザーのデータを全て取得する関数
@@ -106,6 +109,25 @@ class DataAccess:
                 "created_by": data.created_by
             }
         return json.dumps(data_dict, ensure_ascii=False)
+    
+    
+    def fetch_AllUser_data() -> str:  # json形式で返す
+        data_dict = {}
+        data_list = Data.query.all()
+        for data in data_list:
+            data_dict[data.id] = {
+                "title": data.title,
+                "deadline": data.deadline.strftime('%Y-%m-%d %H:%M:%S'),
+                "subject": data.subject,
+                "star_num": data.star_num,
+                "memo": data.memo,
+                "memo_img": data.memo_img,
+                "created_at": data.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                "updated_at": data.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+                "created_by": data.created_by
+            }
+        return json.dumps(data_dict, ensure_ascii=False)
+    
     
     # ランダムに1つ課題IDを取得
     def random_fetch_id() -> str:
