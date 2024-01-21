@@ -21,28 +21,34 @@
 </div>
 <br>
 <div class="container">
-    <table align="center" class="table table-sm table-bordered border-secondary table-striped">
-        <tr>
-            <th>並び替え条件</th>
-            <td>
-                <input type="radio" name="sort" value="test">締切日
-                <input type="radio" name="sort" value="test">重要度
-                <input type="radio" name="sort" value="test">課題追加日(未実装なら削除)
-            </td>
-        </tr>
-        <tr>
-            <th>並び順</th>
-            <td>
-                <input type="radio" name="sort" value="up">昇順
-                <input type="radio" name="sort" value="down">降順
-            </td>
-        </tr>
-    </table>
-    <div align="center">
-        <a href="{{ url_for('sort_data') }}">
-            <button type="submit" class="btn btn-secondary">並び替え</button>
-        </a>
-    </div>
+    <form action="/search_data" method="POST">
+        <table align="center" class="table table-sm table-bordered border-secondary table-striped">
+            <tr>
+                <th>並び替え条件</th>
+                <td>
+                    <input type="radio" name="sort" value="test">締切日
+                    <input type="radio" name="sort" value="test">重要度
+                    <input type="radio" name="sort" value="test">課題追加日(未実装なら削除)
+                </td>
+            </tr>
+            <tr>
+                <th>並び順</th>
+                <td>
+                    <input type="radio" name="sort" value="up">昇順
+                    <input type="radio" name="sort" value="down">降順
+                </td>
+            </tr>
+        </table>
+        <input type="text" id="required-userID" name="created_by" style="display: none">
+        <div align="center">
+            <a href="{{ url_for('sort_data') }}">
+                <button type="submit" class="btn btn-secondary">並び替え</button>
+            </a>
+        </div>
+    </form>
+
+</div>
+<script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
 </body>
 
 </html>
