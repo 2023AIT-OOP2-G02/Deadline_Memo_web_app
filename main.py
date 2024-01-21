@@ -122,8 +122,11 @@ def add_data():
     return render_template("fetch_top_page.html")
 
 
-@app.route("/detail_edit_page")
-def detail_edit_page():
+@app.route("/detail_edit_page/<kadai_id>", methods=["GET"])
+def detail_edit_page(kadai_id):
+    print(kadai_id)
+    # TODO:課題IDから課題の詳細を取得
+
     return render_template("detail_edit_page.html")
 
 
