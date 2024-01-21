@@ -84,6 +84,24 @@ class DataAccess:
         return json.dumps(data_dict, ensure_ascii=False)
     
     
+    def fetch_AllUser_data() -> str:  # json形式で返す
+        data_dict = {}
+        data_list = Data.query.all()
+        for data in data_list:
+            data_dict[data.id] = {
+                "title": data.title,
+                "deadline": data.deadline.strftime('%Y-%m-%d %H:%M:%S'),
+                "subject": data.subject,
+                "star_num": data.star_num,
+                "memo": data.memo,
+                "memo_img": data.memo_img,
+                "created_at": data.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+                "updated_at": data.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+                "created_by": data.created_by
+            }
+        return json.dumps(data_dict, ensure_ascii=False)
+    
+    
     # ランダムに1つ課題IDを取得
     def random_fetch_id() -> str:
         data_list = Data.query.all()
