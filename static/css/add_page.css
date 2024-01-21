@@ -4,9 +4,26 @@ table{
     width: 80%;
 }
 
+.button1{
+  margin-left: 5%;
+}
+
+.button2{
+  margin-right: 5%;
+}
+
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
+  }
+
+  textarea{
+    width: 100%;
+    height: 120px;
+  }
+  
+  .textareanone{
+    resize: none;
   }
 
   .hidden--visually {
