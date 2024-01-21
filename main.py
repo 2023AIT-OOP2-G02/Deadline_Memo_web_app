@@ -39,7 +39,7 @@ def add_page():
     return render_template("add_page.html")
 
 
-@app.route("/add_data", methods=["POST"])  # TODO: 仮データの部分を削除する時、methods=["POST"]をつける
+@app.route("/add_data", methods=["POST"])
 def add_data():
     # 課題追加ボタン #
 
@@ -119,7 +119,7 @@ def add_data():
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
     # 送信が完了したらTOPページに戻る
-    return render_template("index.html")
+    return render_template("fetch_top_page.html")
 
 
 @app.route("/detail_edit_page")
@@ -130,7 +130,7 @@ def detail_edit_page():
 @app.route("/detail_edit_data")
 def detail_edit_data():
     # 課題編集確定ボタン #
-    return render_template("index.html")
+    return render_template("fetch_top_page.html")
 
 
 @app.route("/remove_page")
@@ -141,7 +141,7 @@ def remove_page():
 @app.route("/remove_data")
 def remove_data():
     # 課題削除ボタン #
-    return render_template("index.html")
+    return render_template("fetch_top_page.html")
 
 
 @app.route("/search_page")
@@ -153,7 +153,7 @@ def search_page():
 def search_data():
     # 課題検索ボタン #
 
-    return render_template("index.html")
+    return render_template("fetch_top_page.html")
 
 
 @app.route("/fetch_all_data", methods=["POST"])
