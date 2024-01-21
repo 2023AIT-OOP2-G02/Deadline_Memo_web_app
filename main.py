@@ -167,9 +167,9 @@ def search_data():
     
     # for debug
     print(f"title: {title}")
-    print(f"deadline_date: {deadline_date}")
+    print(f"deadline_date: {datetime.datetime.strptime(deadline_date, '%Y-%m-%d').strftime('%Y-%m-%d')}")
     print(f"subject: {subject}")
-    print(f"star_num: {star_num}")
+    print(f"star_num: {int(star_num)}")
     
     return render_template("fetch_top_page.html")
 
