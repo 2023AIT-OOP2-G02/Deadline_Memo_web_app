@@ -157,9 +157,20 @@ def sort_page():
     return render_template("sort_page.html")
 
 
-@app.route("/search_data")
+@app.route("/search_data", methods=["POST"])
 def search_data():
     # 課題検索ボタン #
+    title = request.form.get('title', None)
+    deadline_date = request.form.get('deadline_date', None)
+    subject = request.form.get('subject', None)
+    star_num = request.form.get('star_num', None)
+    
+    # for debug
+    print(f"title: {title}")
+    print(f"deadline_date: {deadline_date}")
+    print(f"subject: {subject}")
+    print(f"star_num: {star_num}")
+    
     return render_template("fetch_top_page.html")
 
 
