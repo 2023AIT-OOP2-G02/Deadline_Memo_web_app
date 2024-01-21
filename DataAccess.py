@@ -10,6 +10,12 @@ class DataAccess:
 
     # データを追加する関数
     def add_data(data_json: str):  # 例外処理が必要かも
+        """データベースにデータを追加する関数
+
+        Args:
+            data_json (str): json形式のデータ
+        """
+        
         data_dict = json.loads(data_json)
 
         id: str = list(data_dict.keys())[0]
@@ -31,6 +37,12 @@ class DataAccess:
 
     # データを削除する関数
     def delete_data(id: str):
+        """データベースからデータを削除する関数
+
+        Args:
+            id (str): 課題ID
+        """
+        
         data = Data.query.filter_by(id=id).first()
         if data:
             db.session.delete(data)
@@ -38,6 +50,12 @@ class DataAccess:
 
     # データを更新する関数
     def update_data(data_json: str):  # 例外処理が必要かも
+        """データベースのデータを更新する関数\n
+            課題IDが同じものを更新します
+        Args:
+            data_json (str): json形式のデータ
+        """
+        
         data_dict = json.loads(data_json)
 
         id: str = list(data_dict.keys())[0]
@@ -64,6 +82,15 @@ class DataAccess:
 
     # データを取得する関数
     def fetch_data_all(user_id: str) -> str:  # json形式で返す
+        """指定したユーザーのデータを全て取得する関数
+
+        Args:
+            user_id (str): ユーザーID
+
+        Returns:
+            str: json形式のデータ
+        """
+        
         data_dict = {}
         data_list = Data.query.filter_by(created_by=user_id).all()
         for data in data_list:
@@ -82,6 +109,13 @@ class DataAccess:
     
     # ランダムに1つ課題IDを取得
     def random_fetch_id() -> str:
+        """データベース内からランダムに1つ課題IDを取得する関数
+
+        Returns:
+            str: 課題ID
+        """
+        
+        
         data_list = Data.query.all()
         data = data_list[random.randint(0, len(data_list) - 1)]
         return data.id
