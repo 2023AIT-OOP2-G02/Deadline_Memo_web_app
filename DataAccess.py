@@ -29,12 +29,14 @@ class DataAccess:
         db.session.add(data)
         db.session.commit()
 
+
     # データを削除する関数
     def delete_data(id: str):
         data = Data.query.filter_by(id=id).first()
         if data:
             db.session.delete(data)
             db.session.commit()
+
 
     # データを更新する関数
     def update_data(data_json: str):  # 例外処理が必要かも
@@ -62,6 +64,7 @@ class DataAccess:
             data.created_by = created_by
             db.session.commit()
 
+
     # データを取得する関数
     def fetch_data_all(user_id: str) -> str:  # json形式で返す
         data_dict = {}
@@ -79,6 +82,7 @@ class DataAccess:
                 "created_by": data.created_by
             }
         return json.dumps(data_dict, ensure_ascii=False)
+    
     
     # ランダムに1つ課題IDを取得
     def random_fetch_id() -> str:
