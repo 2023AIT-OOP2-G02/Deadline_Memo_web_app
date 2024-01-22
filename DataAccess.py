@@ -36,7 +36,7 @@ class DataAccess:
         db.session.commit()
 
 
-    # データを削除する関数
+    # 単独のデータを削除する関数
     def delete_data(id: str):
         """データベースからデータを削除する関数
 
@@ -48,6 +48,21 @@ class DataAccess:
         if data:
             db.session.delete(data)
             db.session.commit()
+            
+            
+    # 複数のデータを削除する関数
+    def delete_data_list(id_list: list):
+        """データベースからデータを削除する関数
+
+        Args:
+            id_list (list): 課題IDのリスト
+        """
+        
+        for id in id_list:
+            data = Data.query.filter_by(id=id).first()
+            if data:
+                db.session.delete(data)
+        db.session.commit()
 
 
     # データを更新する関数
