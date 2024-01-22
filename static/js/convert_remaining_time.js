@@ -1,14 +1,16 @@
 
-export const convert_remaining_time = () => {
+export const convert_remaining_time = (deadline_data) => {
     // 最終的に受け取る引数: 2024-01-21 21:03:00
 
+    // 引数から -, :, 半角スペースを除く
+    const deadline_splitdata = deadline_data.split(/[-:\s]/);
     // 仮データ、本番はDBから取得
-    const year_deadline = 2024;
-    const month_deadline = 2;
-    const day_deadline = 21;
-    const hour_deadline = 18;
-    const minute_deadline = 30;
-    const second_deadline = 0;
+    const year_deadline = Number(deadline_splitdata[0]);
+    const month_deadline = Number(deadline_splitdata[1]);
+    const day_deadline = Number(deadline_splitdata[2]);
+    const hour_deadline = Number(deadline_splitdata[3]);
+    const minute_deadline = Number(deadline_splitdata[4]);
+    const second_deadline = Number(deadline_splitdata[5]);
 
     let today = new Date();
 
@@ -127,4 +129,6 @@ export const convert_remaining_time = () => {
 
     // デバック用
     console.log("残り時間：" + result_time_str);
+
+    return result_time_str;
 }

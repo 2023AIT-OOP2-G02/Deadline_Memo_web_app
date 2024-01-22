@@ -11,4 +11,4 @@ dateElement.innerHTML = date;
 const userID = getUserID();
 console.log("ID:" + userID); //アクセスしてきた人のuserIDが表示されるはず
 
-convert_remaining_time();
+convert_remaining_time("2024-01-22 12:30:05");
