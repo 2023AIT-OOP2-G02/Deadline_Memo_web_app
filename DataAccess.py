@@ -112,6 +112,11 @@ class DataAccess:
     
     
     def fetch_AllUser_data() -> str:  # json形式で返す
+        """全てのユーザーのデータを取得する関数
+
+        Returns:
+            str: json形式のデータ
+        """
         data_dict = {}
         data_list = Data.query.all()
         for data in data_list:
