@@ -183,3 +183,31 @@ class DataAccess:
             data_dict = {k: v for k, v in data_dict.items() if star_num == v["star_num"]}
             
         return json.dumps(data_dict, ensure_ascii=False)
+    
+    
+    def sort_data_json(data_json:str, sort_key: str, order: str) -> str: # json形式で返す
+        """jsonデータをソートする関数
+
+        Args:
+            data_json (str): json形式のデータ
+            sort_key (str): sortするキー
+            order (str): 昇順(up)か降順(down)か
+
+        Returns:
+            str: json形式のデータ
+        """
+        
+        if data_json == None:
+            return None
+        
+        data_dict = json.loads(data_json)
+        
+        if sort_key and order:
+            reverse = False
+            if order == "down":
+                reverse = True
+        
+            data_dict = sorted(data_dict.items(), key=lambda x:x[1][sort_key], reverse=reverse)
+            
+        
+        return json.dumps(dict(data_dict), ensure_ascii=False)
