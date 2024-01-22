@@ -112,6 +112,11 @@ class DataAccess:
     
     
     def fetch_AllUser_data() -> str:  # json形式で返す
+        """全てのユーザーのデータを取得する関数
+
+        Returns:
+            str: json形式のデータ
+        """
         data_dict = {}
         data_list = Data.query.all()
         for data in data_list:
@@ -141,3 +146,40 @@ class DataAccess:
         data_list = Data.query.all()
         data = data_list[random.randint(0, len(data_list) - 1)]
         return data.id
+
+
+    # process
+    
+    def search_data_json(data_json:str, title= None, deadline_date = None, subject = None, star_num = None) -> str: # json形式で返す
+        """jsonデータから条件に合うデータを抽出する関数
+
+        Args:
+            data_json (str): json形式のデータ
+            title (str): 課題のタイトル. Defaults to None.
+            deadline_date (str): 締切日. Defaults to None.
+            subject (str): 講義名. Defaults to None.
+            star_num (int): 重要度. Defaults to None.
+
+        Returns:
+            str: json形式のデータ
+        """
+        
+        if data_json == None:
+            return None
+        
+        data_dict = json.loads(data_json)
+        
+        if title:
+            data_dict = {k: v for k, v in data_dict.items() if title in v["title"]}
+            
+        if deadline_date:
+            data_dict = {k: v for k, v in data_dict.items() if deadline_date in v["deadline"]}
+            
+        if subject:
+            data_dict = {k: v for k, v in data_dict.items() if subject in v["subject"]}
+            
+        if star_num:
+            star_num = int(star_num)
+            data_dict = {k: v for k, v in data_dict.items() if star_num == v["star_num"]}
+            
+        return json.dumps(data_dict, ensure_ascii=False)

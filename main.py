@@ -156,15 +156,34 @@ def sort_page():
     return render_template("sort_page.html")
 
 
-@app.route("/search_data")
+@app.route("/search_data", methods=["POST"])
 def search_data():
     # 課題検索ボタン #
-    return render_template("fetch_top_page.html")
+    title = request.form.get('title', None)
+    deadline_date = request.form.get('deadline_date', None)
+    subject = request.form.get('subject', None)
+    star_num = request.form.get('star_num', None)
+    user_id = request.form.get('created_by', None)
+    
+    data_json = DataAccess.fetch_data_all(user_id = user_id)
+    res_json = DataAccess.search_data_json(data_json, title, deadline_date, subject, star_num)
+    
+    # # for debug
+    # if title : print(f"title: {title}")
+    # if deadline_date : print(f"deadline_date: {deadline_date}")
+    # if subject : print(f"subject: {subject}")
+    # if star_num : print(f"star_num: {int(star_num)}")
+    # print(f"user_id: {user_id}")
+    
+    res_dict = json.loads(res_json)
+    keys = list(res_dict.keys())
+    # 検索条件でfilterしたページを表示
+    return render_template("index.html", keys=keys, data_dict=res_dict) 
 
 
 @app.route("/sort_data")
 def sort_data():
-    # 課題検索ボタン #
+    # 課題並び替えボタン #
     return render_template("fetch_top_page.html")
 
 
