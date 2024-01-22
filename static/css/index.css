@@ -7,9 +7,21 @@
     margin-left: 50px;
 }
 
-.table-scrool {
-    width: 1000px;
-    height: 300px;
-    overflow: auto;
+.button{
+    display: flex;
+    justify-content: flex-end;
+}
 
+.button1{
+    margin: 0 2%;
+}
+
+.button3{
+    /*display: flex;*/
+    justify-content: flex-end;
+    display: inline;
+}
+
+.table-scrool {
+    overflow: auto;
 }

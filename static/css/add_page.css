@@ -4,28 +4,26 @@ table{
     width: 80%;
 }
 
-th, td{
-    padding: 5px 15px;
-    border: 1px solid #a5d1f1;
+.button1{
+  margin-left: 5%;
 }
 
-th{
-    text-align: center;
-    background-color: #d0edfd;
-}
-
-button{
-    font: inherit;
-    font-size: 1rem;
-    width: 20%;
-    margin: 1rem 0;
-    background-color: #d0edfd;
-    color: #333;
+.button2{
+  margin-right: 5%;
 }
 
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
+  }
+
+  textarea{
+    width: 100%;
+    height: 120px;
+  }
+  
+  .textareanone{
+    resize: none;
   }
 
   .hidden--visually {

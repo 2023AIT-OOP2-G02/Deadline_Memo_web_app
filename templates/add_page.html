@@ -12,7 +12,7 @@
 </head>
 <body>
     <br>
-    <div align="static">
+    <div class="button1" align="static">
         <a href="{{url_for('index')}}">
         <button type="button" class="btn btn-secondary">戻る</button>
         </a>
@@ -62,7 +62,7 @@
                     <th colspan="2">詳細（自由メモ）</th>
                 </tr>
                 <td colspan="2">
-                    <textarea name="memo" placeholder="memo" cols="30" rows="10"></textarea>
+                    <textarea class="textareanone" name="memo" placeholder="memo"></textarea>
                 </td>
             </table>
             <input type="text" id="required-userID" name="created_by" style="display: none">
@@ -74,7 +74,7 @@
         </form>
     </div>
     <br>
-    <div align="right">
+    <div class="button2" align="right">
         <button type="button" class="btn btn-primary">画像追加</button>
     </div>
     <script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
