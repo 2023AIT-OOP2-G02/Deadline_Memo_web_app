@@ -206,8 +206,10 @@ class DataAccess:
             reverse = False
             if order == "down":
                 reverse = True
-        
-            data_dict = sorted(data_dict.items(), key=lambda x:x[1][sort_key], reverse=reverse)
+            if sort_key == "deadline" or sort_key == "created_at":
+                data_dict = sorted(data_dict.items(), key=lambda x:datetime.strptime(x[1][sort_key], '%Y-%m-%d %H:%M:%S'), reverse=reverse)
+            else:
+                data_dict = sorted(data_dict.items(), key=lambda x:x[1][sort_key], reverse=reverse)
             
         
         return json.dumps(dict(data_dict), ensure_ascii=False)
