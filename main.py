@@ -166,7 +166,8 @@ def search_data():
     user_id = request.form.get('created_by', None)
     
     data_json = DataAccess.fetch_data_all(user_id = user_id)
-    res_json = DataAccess.search_data_json(data_json, title, deadline_date, subject, star_num)
+    res_json = DataAccess.search_data_json(data_json = data_json, 
+                                           title = title, deadline_date = deadline_date, subject = subject, star_num = star_num)
     
     # # for debug
     # if title : print(f"title: {title}")
@@ -181,9 +182,26 @@ def search_data():
     return render_template("index.html", keys=keys, data_dict=res_dict) 
 
 
-@app.route("/sort_data")
+@app.route("/sort_data", methods=["POST"])
 def sort_data():
     # 課題並び替えボタン #
+    sort_key = request.form.get('sort_key', None)
+    order = request.form.get('order', None)
+    user_id = request.form.get('created_by', None)
+    
+    if sort_key and order:
+        data_json = DataAccess.fetch_data_all(user_id = user_id)
+        res_json = DataAccess.sort_data_json(data_json = data_json, sort_key = sort_key, order = order)
+        res_dict = json.loads(res_json)
+        keys = list(res_dict.keys())
+        
+        # for debug
+        print(res_dict)
+        
+        # sort条件でsortしたページを表示
+        return render_template("index.html", keys=keys, data_dict=res_dict)
+        
+    # default
     return render_template("fetch_top_page.html")
 
 
