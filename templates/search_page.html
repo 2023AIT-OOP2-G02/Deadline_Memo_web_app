@@ -73,6 +73,7 @@
                     </td>
                 </tr>
             </table>
+            <input type="text" id="required-userID" name="created_by" style="display: none">
             <div align="center">
                 <a href="{{ url_for('search_data') }}">
                     <button type="submit" class="btn btn-secondary">検索</button>
@@ -80,6 +81,7 @@
             </div>
         </form>
     </div>
+    <script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
 </body>
 
 </html>
