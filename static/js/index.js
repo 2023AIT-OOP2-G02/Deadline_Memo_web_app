@@ -1,4 +1,5 @@
 import { getUserID } from "./get_user_id.js";
+import { convert_remaining_time } from "./convert_remaining_time.js";
 
 // 日付の表示
 const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
@@ -9,6 +10,9 @@ dateElement.innerHTML = date;
 // ユーザーIDを取得
 const userID = getUserID();
 console.log("ID:" + userID); //アクセスしてきた人のuserIDが表示されるはず
+
+// deadline文字例を残り時間に変換する関数
+convert_remaining_time("2024-01-22 12:30:05");
 
 // 全ての課題IDを取得
 
@@ -33,3 +37,4 @@ trsArray.forEach(trElem => {
         location.href = `/detail_edit_page/${kadaiID}`;
     });
 });
+
