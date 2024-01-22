@@ -164,12 +164,14 @@ def search_data():
     deadline_date = request.form.get('deadline_date', None)
     subject = request.form.get('subject', None)
     star_num = request.form.get('star_num', None)
+    user_id = request.form.get('created_by', None)
     
     # for debug
     print(f"title: {title}")
     print(f"deadline_date: {datetime.datetime.strptime(deadline_date, '%Y-%m-%d').strftime('%Y-%m-%d')}")
     print(f"subject: {subject}")
     print(f"star_num: {int(star_num)}")
+    print(f"user_id: {user_id}")
     
     return render_template("fetch_top_page.html")
 
