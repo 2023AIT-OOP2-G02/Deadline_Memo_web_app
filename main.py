@@ -166,14 +166,20 @@ def search_data():
     star_num = request.form.get('star_num', None)
     user_id = request.form.get('created_by', None)
     
-    # for debug
-    print(f"title: {title}")
-    print(f"deadline_date: {datetime.datetime.strptime(deadline_date, '%Y-%m-%d').strftime('%Y-%m-%d')}")
-    print(f"subject: {subject}")
-    print(f"star_num: {int(star_num)}")
-    print(f"user_id: {user_id}")
+    data_json = DataAccess.fetch_data_all(user_id = user_id)
+    res_json = DataAccess.search_data_json(data_json, title, deadline_date, subject, star_num)
     
-    return render_template("fetch_top_page.html")
+    # # for debug
+    # if title : print(f"title: {title}")
+    # if deadline_date : print(f"deadline_date: {deadline_date}")
+    # if subject : print(f"subject: {subject}")
+    # if star_num : print(f"star_num: {int(star_num)}")
+    # print(f"user_id: {user_id}")
+    
+    res_dict = json.loads(res_json)
+    keys = list(res_dict.keys())
+    # 検索条件でfilterしたページを表示
+    return render_template("index.html", keys=keys, data_dict=res_dict) 
 
 
 @app.route("/sort_data")

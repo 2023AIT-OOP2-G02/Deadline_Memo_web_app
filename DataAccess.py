@@ -179,6 +179,7 @@ class DataAccess:
             data_dict = {k: v for k, v in data_dict.items() if subject in v["subject"]}
             
         if star_num:
+            star_num = int(star_num)
             data_dict = {k: v for k, v in data_dict.items() if star_num == v["star_num"]}
             
         return json.dumps(data_dict, ensure_ascii=False)
