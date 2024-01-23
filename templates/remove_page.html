@@ -26,7 +26,6 @@
                         <th>削除</th>
                         <th>課題名</th>
                         <th>講義名</th>
-                        <th>残り時間</th>
                     </tr>
                 </thead>
                 <form action="/remove_data" method="POST">
@@ -38,7 +37,6 @@
                             </td>
                             <td>{{data_dict[key]["title"]}}</td>
                             <td>{{data_dict[key]["subject"]}}</td>
-                            <td>0</td>
                             <!-- <td>{{data_dict[key]["deadline"]}}</td> -->
                         </tr>
                     {% endfor %}
