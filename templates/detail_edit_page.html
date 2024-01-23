@@ -68,9 +68,11 @@
                 </td>
             </table>
             <input type="text" id="required-userID" name="created_by" style="display: none">
+            <input type="text" name="kadai_id" value="{{ kadai.id }}" style="display: none">
+            <input type="text" name="created_at" value="{{ kadai.created_at }}" style="display: none">
             <div align="center">
-                <a href="{{url_for('add_data')}}">
-                    <button type="submit" class="btn btn-primary" >追加</button>
+                <a href="{{url_for('detail_edit_data')}}">
+                    <button type="submit" class="btn btn-primary" >更新</button>
                 </a>
             </div>
         </form>
