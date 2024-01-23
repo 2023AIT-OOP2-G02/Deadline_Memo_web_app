@@ -54,6 +54,18 @@ def render_remove_data(user_id):
     return render_template("remove_page.html", keys=keys, data_dict=data_dict)
 
 
+@app.route("/remove_data", methods=["POST"])
+def remove_data():
+    # 課題削除ボタン #
+    # 削除する課題IDのリストを取得
+    remove_ids = request.form.getlist('remove_ids')
+    print(remove_ids)
+    # DBから削除
+    DataAccess.delete_data_list(remove_ids)
+
+    return render_template("fetch_top_page.html")
+
+
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
 
 @app.route("/add_page")
@@ -160,12 +172,6 @@ def detail_edit_data():
 # @app.route("/remove_page")
 # def remove_page():
 #     return render_template("remove_page.html")
-
-
-@app.route("/remove_data")
-def remove_data():
-    # 課題削除ボタン #
-    return render_template("fetch_top_page.html")
 
 
 @app.route("/search_page")
