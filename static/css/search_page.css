@@ -4,6 +4,10 @@ table{
     width: 80%;
 }
 
+.button1{
+  margin-left: 5%;
+}
+
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
