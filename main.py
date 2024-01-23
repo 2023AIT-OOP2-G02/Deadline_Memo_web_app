@@ -32,6 +32,28 @@ def render_top_data(user_id):
     return render_template("index.html", keys=keys, data_dict=data_dict)
 
 
+@app.route('/remove_page')
+def remove_page():
+    return render_template("fetch_remove_page.html")
+
+
+@app.route("/fetch_remove_data", methods=["POST"])
+def fetch_my_all_remove_data():
+    user_id = request.values['userID']
+    print(user_id)
+    return jsonify({'redirect': url_for("render_remove_data", user_id=user_id)})
+
+
+# http://127.0.0.1:5000/
+@app.route('/render_remove_data/<user_id>')
+def render_remove_data(user_id):
+    res = DataAccess.fetch_data_all(user_id)
+    # res = DataAccess.fetch_data_all(user_id = user_id)
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    return render_template("remove_page.html", keys=keys, data_dict=data_dict)
+
+
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
 
 @app.route("/add_page")
@@ -126,7 +148,7 @@ def add_data():
 def detail_edit_page(kadai_id):
     # TODO:課題IDから課題の詳細を取得
     kadai = Data.query.get(kadai_id)
-    return render_template("detail_edit_page.html",kadai=kadai)
+    return render_template("detail_edit_page.html", kadai=kadai)
 
 
 @app.route("/detail_edit_data")
@@ -135,9 +157,9 @@ def detail_edit_data():
     return render_template("fetch_top_page.html")
 
 
-@app.route("/remove_page")
-def remove_page():
-    return render_template("remove_page.html")
+# @app.route("/remove_page")
+# def remove_page():
+#     return render_template("remove_page.html")
 
 
 @app.route("/remove_data")
@@ -164,22 +186,22 @@ def search_data():
     subject = request.form.get('subject', None)
     star_num = request.form.get('star_num', None)
     user_id = request.form.get('created_by', None)
-    
-    data_json = DataAccess.fetch_data_all(user_id = user_id)
-    res_json = DataAccess.search_data_json(data_json = data_json, 
-                                           title = title, deadline_date = deadline_date, subject = subject, star_num = star_num)
-    
+
+    data_json = DataAccess.fetch_data_all(user_id=user_id)
+    res_json = DataAccess.search_data_json(data_json=data_json,
+                                           title=title, deadline_date=deadline_date, subject=subject, star_num=star_num)
+
     # # for debug
     # if title : print(f"title: {title}")
     # if deadline_date : print(f"deadline_date: {deadline_date}")
     # if subject : print(f"subject: {subject}")
     # if star_num : print(f"star_num: {int(star_num)}")
     # print(f"user_id: {user_id}")
-    
+
     res_dict = json.loads(res_json)
     keys = list(res_dict.keys())
     # 検索条件でfilterしたページを表示
-    return render_template("index.html", keys=keys, data_dict=res_dict) 
+    return render_template("index.html", keys=keys, data_dict=res_dict)
 
 
 @app.route("/sort_data", methods=["POST"])
@@ -188,19 +210,19 @@ def sort_data():
     sort_key = request.form.get('sort_key', None)
     order = request.form.get('order', None)
     user_id = request.form.get('created_by', None)
-    
+
     if sort_key and order:
-        data_json = DataAccess.fetch_data_all(user_id = user_id)
-        res_json = DataAccess.sort_data_json(data_json = data_json, sort_key = sort_key, order = order)
+        data_json = DataAccess.fetch_data_all(user_id=user_id)
+        res_json = DataAccess.sort_data_json(data_json=data_json, sort_key=sort_key, order=order)
         res_dict = json.loads(res_json)
         keys = list(res_dict.keys())
-        
+
         # for debug
         print(res_dict)
-        
+
         # sort条件でsortしたページを表示
         return render_template("index.html", keys=keys, data_dict=res_dict)
-        
+
     # default
     return render_template("fetch_top_page.html")
 

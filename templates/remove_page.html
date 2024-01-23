@@ -23,92 +23,41 @@
                 <thead class="table-light">
                     <tr>
                         <th>削除</th>
-                        <th>日付</th>
                         <th>課題名</th>
+                        <th>講義名</th>
+                        <th>残り時間</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
-                                    aria-label="...">
-                            </div>
-                        </td>
-                        <td>2/2</td>
-                        <td>物理実験</td>
-                    </tr>
-
+                    {% for key in keys %}
+                        <tr id="{{key}}">
+                            <td>
+                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+                            </td>
+                            <td>{{data_dict[key]["title"]}}</td>
+                            <td>{{data_dict[key]["subject"]}}</td>
+                            <td>0</td>
+                            <!-- <td>{{data_dict[key]["deadline"]}}</td> -->
+                        </tr>
+                    {% endfor %}
+{#                    <tr id="9fa2cf005ded40d0b601ab1967fd33cd">#}
+{#                        <td>#}
+{#                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">#}
+{#                        </td>#}
+{#                        <td>オブ演課題</td>#}
+{#                        <td>オブ演</td>#}
+{#                        <td>0</td>#}
+{#                        <!-- <td>2024-01-21 00:00:00</td> -->#}
+{#                    </tr>#}
+{#                    <tr id="9fa2cf005ded40d0b601ab1967fd33cd">#}
+{#                        <td>#}
+{#                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">#}
+{#                        </td>#}
+{#                        <td>オブ演課題</td>#}
+{#                        <td>オブ演</td>#}
+{#                        <td>0</td>#}
+{#                        <!-- <td>2024-01-21 00:00:00</td> -->#}
+{#                    </tr>#}
                 </tbody>
             </table>
         </div>
