@@ -53,7 +53,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    {% for key in keys %}
+                    <tr id="{{key}}">
+                        <td>{{data_dict[key]["title"]}}</td>
+                        <td>{{data_dict[key]["subject"]}}</td>
+                        <td>0</td>
+                        <!-- <td>{{data_dict[key]["deadline"]}}</td> -->
+                    </tr>
+                    {% endfor %}
+                    <!-- <tr>
                         <td>かだい１</td>
                         <td>こうぎ１</td>
                         <td>1日</td>
@@ -92,21 +100,22 @@
                         <td>かだい３</td>
                         <td>こうぎ３</td>
                         <td>10分</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
-
-
-        <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-            </div>
-            <div class="button3">
-                <a href="{{url_for("search_page")}}">
-                    <button type="button" class="btn btn-dark">検索</button>
-                </a>
+            <br>
+            <div class="button">
+                <div class="button1">
+                    <a href="{{url_for('search_page')}}">
+                        <button type="button" class="btn btn-dark">検索</button>
+                    </a>
+                </div>
+                <div class="button2">
+                    <a href="{{url_for('sort_page')}}">
+                        <button type="button" class="btn btn-dark">並び替え</button>
+                    </a>
+                </div>
             </div>
         </div>
 

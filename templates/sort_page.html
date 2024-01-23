@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/sort_page.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.jp/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>Bootstrap Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<br>
+<div align="static">
+    <a href="{{url_for('index')}}">
+        <button type="button" class="btn btn-secondary">戻る</button>
+    </a>
+</div>
+<br>
+<div class="container">
+    <form action="/sort_data" method="POST">
+        <table align="center" class="table table-sm table-bordered border-secondary table-striped">
+            <tr>
+                <th>並び替え条件</th>
+                <td>
+                    <input required type="radio" name="sort_key" value="deadline">締切日
+                    <input type="radio" name="sort_key" value="star_num">重要度
+                    <input type="radio" name="sort_key" value="created_at">課題追加日
+                </td>
+            </tr>
+            <tr>
+                <th>並び順</th>
+                <td>
+                    <input required type="radio" name="order" value="up">昇順
+                    <input type="radio" name="order" value="down">降順
+                </td>
+            </tr>
+        </table>
+        <input type="text" id="required-userID" name="created_by" style="display: none">
+        <div align="center">
+            <a href="{{ url_for('sort_data') }}">
+                <button type="submit" class="btn btn-secondary">並び替え</button>
+            </a>
+        </div>
+    </form>
+
+</div>
+<script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
+</body>
+
+</html>
