@@ -1,5 +1,6 @@
 import { getUserID } from "./get_user_id.js";
 import { update_remaining_time } from "./update_remaining_time.js";
+import { update_tr_color } from "./update_tr_color.js";
 
 // 日付の表示
 const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
@@ -54,6 +55,7 @@ update_remaining_time(deadlineElemArr);
 setInterval(
     () => {
         update_remaining_time(deadlineElemArr);
+        update_tr_color(deadlineElemArr);
     },
     1000
 );
