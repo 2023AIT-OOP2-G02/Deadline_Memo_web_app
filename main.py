@@ -392,4 +392,4 @@ def API_test_DatabaseDelete():
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
-    app.run(debug=True)
+    app.run(debug=True, port = 5050)
