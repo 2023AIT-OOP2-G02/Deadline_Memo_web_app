@@ -63,6 +63,7 @@ def remove_data():
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
     #削除通知をしたい
+    # TODO:ユーザーIDの取得
     res = DataAccess.fetch_data_all('32ce6c36-5aeb-4a44-871c-209e14cbd272')
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
@@ -156,8 +157,13 @@ def add_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
+    # TODO:ユーザーIDの取得
+    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの登録が完了しました。"
     # 送信が完了したらTOPページに戻る
-    return render_template("fetch_top_page.html")
+    return render_template("index.html",data_dict=data_dict,keys=keys,notice=notice)
 
 
 @app.route("/detail_edit_page/<kadai_id>", methods=["GET"])
