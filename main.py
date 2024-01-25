@@ -62,8 +62,12 @@ def remove_data():
     print(remove_ids)
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
-
-    return render_template("fetch_top_page.html")
+    #削除通知をしたい
+    res = DataAccess.fetch_data_all('32ce6c36-5aeb-4a44-871c-209e14cbd272')
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの削除が完了しました。"
+    return render_template("index.html", keys=keys,data_dict=data_dict,notice=notice)
 
 
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
