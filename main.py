@@ -255,8 +255,14 @@ def detail_edit_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
+    # TODO:ユーザーIDの取得
+    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの更新が完了しました。"
+
     # 送信が完了したらTOPページに戻る
-    return render_template("fetch_top_page.html")
+    return render_template("index.html",keys=keys,data_dict=data_dict,notice=notice)
 
 
 # @app.route("/remove_page")
