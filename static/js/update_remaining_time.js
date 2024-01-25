@@ -12,7 +12,7 @@ export const update_remaining_time = (deadlineElemArr) => {
         // 残り時間を表示
         deadlineElem.innerHTML = remaining_time;
 
-        tuutiwo_okuruka(deadline, title);
+        
 
         
 
