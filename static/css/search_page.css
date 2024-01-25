@@ -47,3 +47,7 @@ table{
   .rating__input:checked ~ .rating__label {
     color: #ffbb00;
   }
+
+#date {
+    color: grey;
+}
