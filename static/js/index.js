@@ -38,3 +38,24 @@ trsArray.forEach(trElem => {
     });
 });
 
+
+/* 期限を取得して残り時間に変換 */
+
+// 全ての期限を取得
+const deadlineElems = document.getElementsByClassName('deadline');
+
+// HTMLCollectionを配列に変換
+const deadlineElemArr = Array.from(deadlineElems);
+
+
+// 1秒おきにループさせる
+setInterval(() => {
+    deadlineElemArr.forEach(deadlineElem => {
+        // elemのdata-deadlineを取得
+        const deadline = deadlineElem.dataset.deadline;
+
+        // deadlineを残り時間に変換
+        deadlineElem.innerHTML = convert_remaining_time(deadline);
+    });
+}, 1000);
+
