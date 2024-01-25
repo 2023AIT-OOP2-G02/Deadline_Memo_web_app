@@ -19,14 +19,11 @@
     </header>
     <section>
         <!-- メッセージの表示領域を追加 -->
-        <div id="message-container" role="alert" style="display: block;">{{notice}}</div>
+        <div id="message-container" role="alert" style="display: {{'block' if notice else 'none'}};">{{notice}}</div>
         <div id="error-container" role="alert" style="display: none;"></div>
     </section>
     <div class="container text-center">
         <div class="row">
-            <div align="left">
-                年月日
-            </div>
             <br>
             <div class="button">
                 <div class="button1">
@@ -58,6 +55,7 @@
                     <tr id="{{key}}">
                         <td>{{data_dict[key]["title"]}}</td>
                         <td>{{data_dict[key]["subject"]}}</td>
+                        <td class="deadline" data-deadline="{{data_dict[key]['deadline']}}" data-title="{{data_dict[key]['title']}}"></td>
                         <td>
                             <div class="rating">
                                 <label class="rating__label" for="1-star" title="星1つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 1 else "rating__icon" }}></span><span class="hidden--visually">星1つ</span></label>
@@ -67,7 +65,7 @@
                                 <label class="rating__label" for="5-star" title="星5つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 5 else "rating__icon" }}></span><span class="hidden--visually">星5つ</span></label>
                             </div>
                         </td>
-                        <td class="deadline" data-deadline="{{data_dict[key]["deadline"]}}" data-title="{{data_dict[key]["title"]}}"></td>
+                        <td class="deadline" data-deadline="{{data_dict[key]['deadline']}}" data-title="{{data_dict[key]['title']}}"></td>
                     </tr>
                     {% endfor %}
                     <!-- <tr>
