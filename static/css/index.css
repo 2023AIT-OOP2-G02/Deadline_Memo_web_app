@@ -53,6 +53,13 @@
     padding: 0.5rem;
   }
 
+.rating__icon_checked::before {
+    content: "★";
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #ffbb00;
+}
+
   .rating__input ~ .rating__label {
     color: lightgray;
   }
@@ -60,3 +67,7 @@
   .rating__input ~ .rating__label {
     color: #ffbb00;
   }
+
+.checked {
+    color: #ffbb00;
+}

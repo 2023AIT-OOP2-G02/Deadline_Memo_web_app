@@ -60,16 +60,11 @@
                         <td>{{data_dict[key]["subject"]}}</td>
                         <td>
                             <div class="rating">
-                                <input class="rating__input hidden--visually" type="radio" id="5-star" name="star_num" value="5" {{ "checked" if data_dict[key]["star_num"] == 5 else "" }} required />
-                                <label class="rating__label" for="5-star" title="星5つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星5つ</span></label>
-                                <input class="rating__input hidden--visually" type="radio" id="4-star" name="star_num" value="4" {{ "checked" if data_dict[key]["star_num"] == 4 else "" }}/>
-                                <label class="rating__label" for="4-star" title="星4つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星4つ</span></label>
-                                <input class="rating__input hidden--visually" type="radio" id="3-star" name="star_num" value="3" {{ "checked" if data_dict[key]["star_num"] == 3 else "" }}/>
-                                <label class="rating__label" for="3-star" title="星3つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星3つ</span></label>
-                                <input class="rating__input hidden--visually" type="radio" id="2-star" name="star_num" value="2" {{ "checked" if data_dict[key]["star_num"] == 2 else "" }}/>
-                                <label class="rating__label" for="2-star" title="星2つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星2つ</span></label>
-                                <input class="rating__input hidden--visually" type="radio" id="1-star" name="star_num" value="1" {{ "checked" if data_dict[key]["star_num"] == 1 else "" }}/>
-                                <label class="rating__label" for="1-star" title="星1つ"><span class="rating__icon" aria-hidden="true"></span><span class="hidden--visually">星1つ</span></label>
+                                <label class="rating__label" for="1-star" title="星1つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 1 else "rating__icon" }}></span><span class="hidden--visually">星1つ</span></label>
+                                <label class="rating__label" for="2-star" title="星2つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 2 else "rating__icon" }}></span><span class="hidden--visually">星2つ</span></label>
+                                <label class="rating__label" for="3-star" title="星3つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 3 else "rating__icon" }}></span><span class="hidden--visually">星3つ</span></label>
+                                <label class="rating__label" for="4-star" title="星4つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 4 else "rating__icon" }}></span><span class="hidden--visually">星4つ</span></label>
+                                <label class="rating__label" for="5-star" title="星5つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 5 else "rating__icon" }}></span><span class="hidden--visually">星5つ</span></label>
                             </div>
                         </td>
                         <td class="deadline" data-deadline="{{data_dict[key]['deadline']}}"></td>
