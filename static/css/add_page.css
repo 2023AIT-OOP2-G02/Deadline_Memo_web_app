@@ -8,10 +8,6 @@ table{
   margin-left: 5%;
 }
 
-.button2{
-  margin-right: 5%;
-}
-
 .rating {
     display: inline-flex;
     flex-direction: row-reverse;
