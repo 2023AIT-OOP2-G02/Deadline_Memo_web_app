@@ -4,12 +4,15 @@ export const update_remaining_time = (deadlineElemArr) => {
     deadlineElemArr.forEach(deadlineElem => {
         // elemのdata-deadlineを取得
         const deadline = deadlineElem.dataset.deadline;
+        const title = deadlineElem.dataset.title;
 
         // deadlineを残り時間に変換
         const remaining_time = convert_remaining_time(deadline);
         
         // 残り時間を表示
         deadlineElem.innerHTML = remaining_time;
+
+        tuutiwo_okuruka(deadline, title);
 
         
 
