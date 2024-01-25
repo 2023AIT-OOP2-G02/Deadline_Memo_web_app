@@ -58,12 +58,18 @@ def render_remove_data(user_id):
 def remove_data():
     # 課題削除ボタン #
     # 削除する課題IDのリストを取得
+    user_id = request.form.get('created_by', None)
     remove_ids = request.form.getlist('remove_ids')
-    print(remove_ids)
+    print(user_id)
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
-
-    return render_template("fetch_top_page.html")
+    #削除通知をしたい
+    # TODO:ユーザーIDの取得
+    res = DataAccess.fetch_data_all('32ce6c36-5aeb-4a44-871c-209e14cbd272')
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの削除が完了しました。"
+    return render_template("index.html", keys=keys,data_dict=data_dict,notice=notice)
 
 
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
@@ -152,8 +158,13 @@ def add_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
+    # TODO:ユーザーIDの取得
+    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの登録が完了しました。"
     # 送信が完了したらTOPページに戻る
-    return render_template("fetch_top_page.html")
+    return render_template("index.html",data_dict=data_dict,keys=keys,notice=notice)
 
 
 @app.route("/detail_edit_page/<kadai_id>", methods=["GET"])
@@ -245,8 +256,14 @@ def detail_edit_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
+    # TODO:ユーザーIDの取得
+    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    data_dict = json.loads(res)
+    keys = list(data_dict.keys())
+    notice = "データの更新が完了しました。"
+
     # 送信が完了したらTOPページに戻る
-    return render_template("fetch_top_page.html")
+    return render_template("index.html",keys=keys,data_dict=data_dict,notice=notice)
 
 
 # @app.route("/remove_page")
