@@ -13,8 +13,8 @@
 
 
 <body>
-    <h1>remove_page</h1>
-    <div class="container text-center">
+
+    <div class="button1" align="static">
         <br>
         <div class="button1" align="static">
             <a href="{{url_for('index')}}">
@@ -26,15 +26,16 @@
 
         <h2>タスクリスト</h2>
         <div class="table-scrool">
-            <table class="table">
-                <thead class="table-light">
-                    <tr>
-                        <th>削除</th>
-                        <th>課題名</th>
-                        <th>講義名</th>
-                    </tr>
-                </thead>
-                <form action="/remove_data" method="POST">
+
+            <form action="/remove_data" method="POST">
+                <table class="table">
+                    <thead class="table-light">
+                        <tr>
+                            <th>削除</th>
+                            <th>課題名</th>
+                            <th>講義名</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {% for key in keys %}
                         <tr id="{{key}}">
@@ -48,14 +49,15 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                    <div align="center" id="delete-btn">
-                        <a href="{{ url_for('remove_data') }}">
-                            <button type="submit" class="btn btn-danger">削除</button>
-                        </a>
-                    </div>
-                </form>
 
-            </table>
+                </table>
+                <div align="center" id="delete-btn">
+                    <a href="{{ url_for('remove_data') }}">
+                        <button type="submit" class="btn btn-danger">削除</button>
+                    </a>
+                </div>
+            </form>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
