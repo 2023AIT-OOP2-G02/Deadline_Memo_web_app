@@ -44,7 +44,7 @@ export const remaining_hour_minute = (deadline_data) => {
     // 差分の秒数を計算
     const diff_sec = (date_deadline.getTime() - date_now.getTime()) / 1000;
 
-    console.log("秒数の差: " + diff_sec + "秒");
+    // console.log("秒数の差: " + diff_sec + "秒");
 
     // 秒数を適切な単位に変換
     let result_time_str = "";
