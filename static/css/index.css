@@ -1,6 +1,7 @@
 #header {
-    display: flex;
-    border: 2px solid black;
+    border-bottom: solid 1px #ccc;
+    font-family: Courier, serif;
+    margin: 5px;
 }
 
 #header_title {
@@ -80,4 +81,8 @@
 
 .checked {
     color: #ffbb00;
+}
+
+#date {
+    color: grey;
 }

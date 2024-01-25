@@ -1,11 +1,6 @@
 import { getUserID } from "./get_user_id.js";
 import { update_remaining_time } from "./update_remaining_time.js";
 
-// 日付の表示
-const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
-const date = datetime.split(' ')[0];
-const dateElement = document.getElementById('date');
-dateElement.innerHTML = date;
 
 // ユーザーIDを取得
 const userID = getUserID();

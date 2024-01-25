@@ -20,6 +20,8 @@
         </a>
     </div>
     <br>
+    <div id="date" align="center"></div>
+    <h2 align="center">課題検索</h2>
     <div class="container">
         {# 送信フォーム #}
         <form action="/search_data" method="POST">
@@ -82,6 +84,8 @@
         </form>
     </div>
     <script type="module" src="{{url_for('static', filename='js/insert_user_id.js')}}"></script>
+    <script type="module" src="{{url_for('static', filename='js/display_date.js')}}"></script>
+
 </body>
 
 </html>
