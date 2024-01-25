@@ -1,5 +1,5 @@
 import { getUserID } from "./get_user_id.js";
-import { convert_remaining_time } from "./convert_remaining_time.js";
+import { update_remaining_time } from "./update_remaining_time.js";
 
 // 日付の表示
 const datetime = new Date().toLocaleString({ timeZone: 'Asia/Tokyo' }, { hour12: false });
@@ -12,7 +12,7 @@ const userID = getUserID();
 console.log("ID:" + userID); //アクセスしてきた人のuserIDが表示されるはず
 
 // deadline文字例を残り時間に変換する関数
-convert_remaining_time("2024-01-22 12:30:05");
+// convert_remaining_time("2024-01-22 12:30:05");
 
 // 全ての課題IDを取得
 
@@ -47,15 +47,15 @@ const deadlineElems = document.getElementsByClassName('deadline');
 // HTMLCollectionを配列に変換
 const deadlineElemArr = Array.from(deadlineElems);
 
+//初回即時実行
+update_remaining_time(deadlineElemArr);
 
 // 1秒おきにループさせる
-setInterval(() => {
-    deadlineElemArr.forEach(deadlineElem => {
-        // elemのdata-deadlineを取得
-        const deadline = deadlineElem.dataset.deadline;
+setInterval(
+    () => update_remaining_time(deadlineElemArr),
+    1000
+);
 
-        // deadlineを残り時間に変換
-        deadlineElem.innerHTML = convert_remaining_time(deadline);
-    });
-}, 1000);
+
+
 
