@@ -49,14 +49,7 @@
                         </tr>
                         {% endfor %}
                     </tbody>
-                    <div align="center" id="delete-btn">
-                        <a href="{{ url_for('remove_data') }}">
-                            <button type="submit" class="btn btn-danger">削除</button>
-                        </a>
-                    </div>
                     <input type="text" id="required-userID" name="created_by" style="display: none">
-                </form>
-
                 </table>
                 <div align="center" id="delete-btn">
                     <a href="{{ url_for('remove_data') }}">
