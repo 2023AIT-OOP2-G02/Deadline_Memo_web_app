@@ -52,7 +52,9 @@ update_remaining_time(deadlineElemArr);
 
 // 1秒おきにループさせる
 setInterval(
-    () => update_remaining_time(deadlineElemArr),
+    () => {
+        update_remaining_time(deadlineElemArr);
+    },
     1000
 );
 

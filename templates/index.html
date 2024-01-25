@@ -57,7 +57,7 @@
                     <tr id="{{key}}">
                         <td>{{data_dict[key]["title"]}}</td>
                         <td>{{data_dict[key]["subject"]}}</td>
-                        <td class="deadline" data-deadline="{{data_dict[key]["deadline"]}}"></td>
+                        <td class="deadline" data-deadline="{{data_dict[key]["deadline"]}}" data-title="{{data_dict[key]["title"]}}"></td>
                     </tr>
                     {% endfor %}
                     <!-- <tr>
