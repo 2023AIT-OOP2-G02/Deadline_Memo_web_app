@@ -63,9 +63,8 @@ def remove_data():
     print(user_id)
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
-    #削除通知をしたい
-    # TODO:ユーザーIDの取得
-    res = DataAccess.fetch_data_all('32ce6c36-5aeb-4a44-871c-209e14cbd272')
+    #削除通知する
+    res = DataAccess.fetch_data_all(user_id)
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     notice = "データの削除が完了しました。"
@@ -158,8 +157,8 @@ def add_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
-    # TODO:ユーザーIDの取得
-    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    user_id = request.form.get('created_by', None)
+    res = DataAccess.fetch_data_all(user_id)
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     notice = "データの登録が完了しました。"
@@ -256,8 +255,8 @@ def detail_edit_data():
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
-    # TODO:ユーザーIDの取得
-    res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
+    user_id = request.form.get('created_by', None)
+    res = DataAccess.fetch_data_all(user_id)
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     notice = "データの更新が完了しました。"
