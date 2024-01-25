@@ -1,3 +1,16 @@
 #delete-btn {
     margin: 10px 10px 15px 10px;
 }
+
+.rating__icon::before {
+    content: "★";
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.rating__icon_checked::before {
+    content: "★";
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #ffbb00;
+}
