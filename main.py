@@ -58,8 +58,9 @@ def render_remove_data(user_id):
 def remove_data():
     # 課題削除ボタン #
     # 削除する課題IDのリストを取得
+    user_id = request.form.get('created_by', None)
     remove_ids = request.form.getlist('remove_ids')
-    print(remove_ids)
+    print(user_id)
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
 
