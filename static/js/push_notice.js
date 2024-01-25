@@ -8,9 +8,7 @@
 
 
 
-const task_name_list = ["プッシュ通知の実装","宿題","レポート"]// テスト用
-const invalid_notification = [];// 一度表示した通知のタスク名を格納する配列
-const isInvalid = true;// 通知が無効であるかの確認
+const task_name_list_test = ["プッシュ通知の実装","宿題","レポート"]// テスト用
 
 function requestPushPermission() {
     Push.create("許可が必要です", {
@@ -23,32 +21,85 @@ function requestPushPermission() {
     });
 }
 
-// 通知を送信する関数をボタンのクリックイベントに結びつける
-document.getElementById('notifyButton').addEventListener('click', function() {
-    if (Push.Permission.has() && !isIOS()) {
-        Push.create("通知", {
-            body: "これは標準のプッシュ通知です。",
-            // その他のオプション
-        });
-    } else {
-        // iOSデバイスの場合のフォールバック通知処理
-        alert("iOSデバイスではプッシュ通知がサポートされていません。");
-    }
-    
-    function isIOS() {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
-});
+function getTaskNameList (task_name_list) {
+    task_name_list = document.getElementsByClassName('name');
+    return task_name_list;
+}
 
-function sendPushNotification (task_name_list) {// 通知を送信する関数
+function getTaskDeadlineList (task_deadline_list) {
+    task_deadline_list = document.getElementsByClassName('deadline');
+    return task_deadline_list;
+}
+
+function sendPushNotification () {// 通知を送信する関数 6時間、1時間、30分、10分、5分、3分
+    const task_name_list = []
+    const task_deadline_list = []
+
+    getTaskNameList(task_name_list);
+    getTaskDeadlineList(task_deadline_list);
+
     for (var j=0; j < task_name_list.length; j++) {
-        if (checkIsInvalid(task_name_list[j]) == false) {
-            invalid_notification.push(task_name_list[j]);
+        if (convert_remaining_time(task_deadline_list[j]) == "6時間") {
             Push.create("アクション通知", {
                 body: task_name_list[j] + "の期限が迫っています！",
                 timeout: 1000,
                 onClick: function () {
-                    console.log('一定時間が経過しました！');
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
+
+        if (convert_remaining_time(task_deadline_list[j])  == "1時間") {
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
+
+        if (convert_remaining_time(task_deadline_list[j]) == "30分") {
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
+
+        if (convert_remaining_time(task_deadline_list[j]) == "10分") {
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
+
+        if (convert_remaining_time(task_deadline_list[j]) == "5分") {
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    window.focus();
+                    this.close();
+                }
+            });
+        }
+
+        if (convert_remaining_time(task_deadline_list[j]) == "3分") {
+            Push.create("アクション通知", {
+                body: task_name_list[j] + "の期限が迫っています！",
+                timeout: 1000,
+                onClick: function () {
+                    window.focus();
                     this.close();
                 }
             });
@@ -56,19 +107,6 @@ function sendPushNotification (task_name_list) {// 通知を送信する関数
     }
 }
 
-function checkIsInvalid (task_name) { //タスク名が該当するかチェック
-    for(var i=0; i < invalid_notification.length; i++) {
-        if (task_name == invalid_notification[i]) {
-            return true;
-        }
-    }
-    return false;
-}
 
-function refreshList() {
-    //ここは都合のいい条件でクリアするように変更してOK
-    invalid_notification.splice(0,1)
-}
 
-setInterval(refreshList, 5000);
-setInterval(() => sendPushNotification(task_name_list), 2000); // 2秒毎に通知を送信
+setInterval(() => sendPushNotification(), 1000); // 2秒毎に通知を送信
