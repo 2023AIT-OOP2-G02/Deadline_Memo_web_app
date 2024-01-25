@@ -15,7 +15,13 @@
 <body>
     <h1>remove_page</h1>
     <div class="container text-center">
-
+        <br>
+        <div class="button1" align="static">
+            <a href="{{url_for('index')}}">
+                <button type="button" class="btn btn-secondary">戻る</button>
+            </a>
+        </div>
+        <br>
 
 
         <h2>タスクリスト</h2>
@@ -30,20 +36,21 @@
                 </thead>
                 <form action="/remove_data" method="POST">
                     <tbody>
-                    {% for key in keys %}
+                        {% for key in keys %}
                         <tr id="{{key}}">
                             <td>
-                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" name="remove_ids" value="{{key}}" aria-label="...">
+                                <input class="form-check-input" type="checkbox" id="checkboxNoLabel" name="remove_ids"
+                                    value="{{key}}" aria-label="...">
                             </td>
                             <td>{{data_dict[key]["title"]}}</td>
                             <td>{{data_dict[key]["subject"]}}</td>
                             <!-- <td>{{data_dict[key]["deadline"]}}</td> -->
                         </tr>
-                    {% endfor %}
+                        {% endfor %}
                     </tbody>
                     <div align="center" id="delete-btn">
-                        <a href="{{ url_for("remove_data") }}">
-                            <button type="submit" class="btn btn-primary">削除</button>
+                        <a href="{{ url_for('remove_data') }}">
+                            <button type="submit" class="btn btn-danger">削除</button>
                         </a>
                     </div>
                 </form>
