@@ -49,6 +49,7 @@
                     <tr>
                         <th>課題名</th>
                         <th>講義名</th>
+                        <th>重要度</th>
                         <th>残り時間</th>
                     </tr>
                 </thead>
@@ -57,6 +58,15 @@
                     <tr id="{{key}}">
                         <td>{{data_dict[key]["title"]}}</td>
                         <td>{{data_dict[key]["subject"]}}</td>
+                        <td>
+                            <div class="rating">
+                                <label class="rating__label" for="1-star" title="星1つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 1 else "rating__icon" }}></span><span class="hidden--visually">星1つ</span></label>
+                                <label class="rating__label" for="2-star" title="星2つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 2 else "rating__icon" }}></span><span class="hidden--visually">星2つ</span></label>
+                                <label class="rating__label" for="3-star" title="星3つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 3 else "rating__icon" }}></span><span class="hidden--visually">星3つ</span></label>
+                                <label class="rating__label" for="4-star" title="星4つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 4 else "rating__icon" }}></span><span class="hidden--visually">星4つ</span></label>
+                                <label class="rating__label" for="5-star" title="星5つ"><span aria-hidden="true" class= {{ "rating__icon_checked" if data_dict[key]["star_num"] >= 5 else "rating__icon" }}></span><span class="hidden--visually">星5つ</span></label>
+                            </div>
+                        </td>
                         <td class="deadline" data-deadline="{{data_dict[key]["deadline"]}}" data-title="{{data_dict[key]["title"]}}"></td>
                     </tr>
                     {% endfor %}

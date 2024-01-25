@@ -25,3 +25,49 @@
 .table-scrool {
     overflow: auto;
 }
+
+.hidden--visually {
+    border: 0;
+    clip: rect(0.5px 0.5px 0.5px 0.5px);
+    clip: rect(0.5px, 0.5px, 0.5px, 0.5px);
+    height: 0.5px;
+    margin: -0.5px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 0.5px;
+}
+
+/* ここでデザインの変更 */
+
+.rating__label {
+    cursor: pointer;
+    color: gray;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .rating__icon::before {
+    content: "★";
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+
+.rating__icon_checked::before {
+    content: "★";
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: #ffbb00;
+}
+
+  .rating__input ~ .rating__label {
+    color: lightgray;
+  }
+
+  .rating__input ~ .rating__label {
+    color: #ffbb00;
+  }
+
+.checked {
+    color: #ffbb00;
+}
