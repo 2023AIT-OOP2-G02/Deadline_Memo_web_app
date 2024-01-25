@@ -1,4 +1,5 @@
 import { convert_remaining_time } from "./convert_remaining_time.js";
+import { sendPushNotification } from "./push_notice.js"
 
 export const update_remaining_time = (deadlineElemArr) => {
     deadlineElemArr.forEach(deadlineElem => {
@@ -7,14 +8,7 @@ export const update_remaining_time = (deadlineElemArr) => {
         const title = deadlineElem.dataset.title;
 
         // deadlineを残り時間に変換
-        const remaining_time = convert_remaining_time(deadline);
-        
-        // 残り時間を表示
-        deadlineElem.innerHTML = remaining_time;
-
-        
-
-        
-
+        deadlineElem.innerHTML = convert_remaining_time(deadline);
+        sendPushNotification(title, deadlineElem.innerHTML);
     });
 }
