@@ -92,13 +92,13 @@ def add_data():
     created_by = request.form.get('created_by', None)
 
     # デバッグ用
-    # print(f"title: {title}")
-    # print(f"deadline_date: {deadline_date}")
-    # print(f"deadline_time: {deadline_time}")
-    # print(f"subject: {subject}")
-    # print(f"memo: {memo}")
-    # print(f"star_num: {star_num}")
-    # print(f"created_by: {created_by}")
+    print(f"title: {title}")
+    print(f"deadline_date: {deadline_date}")
+    print(f"deadline_time: {deadline_time}")
+    print(f"subject: {subject}")
+    print(f"memo: {memo}")
+    print(f"star_num: {star_num}")
+    print(f"created_by: {created_by}")
 
     # エラー用のメッセージを格納する変数
     message = ""
@@ -129,23 +129,38 @@ def add_data():
 
     # コンマ秒を省いた現在時刻を取得
     now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    row_data_dict = {
+        "title": title,
+        "deadline": f"{deadline_date} {deadline_time}:00",
+        "subject": subject,
+        "star_num": star_num,
+        "memo": memo,
+        "memo_img": "testdayo.jpg",
+        "created_at": now,
+        "updated_at": now,
+        "created_by": created_by
+    }
+    row_data_dict = {kadai_id: row_data_dict}
 
     # POSTによって送られてくるデータに課題IDを添える
     # TODO: memo_imgを追加する
-    data_json = f'''{{
-        "{kadai_id}": {{
-            "title": "{title}",
-            "deadline": "{deadline_date} {deadline_time}:00",
-            "subject": "{subject}",
-            "star_num": {star_num},
-            "memo": "{memo}",
-            "memo_img": "testdayo.jpg",
-            "created_at": "{now}",
-            "updated_at": "{now}",
-            "created_by": "{created_by}"
-        }}
-    }}'''
+    # data_json = f'''{{
+    #     "{kadai_id}": {{
+    #         "title": "{title}",
+    #         "deadline": "{deadline_date} {deadline_time}:00",
+    #         "subject": "{subject}",
+    #         "star_num": {star_num},
+    #         "memo": "{memo}",
+    #         "memo_img": "testdayo.jpg",
+    #         "created_at": "{now}",
+    #         "updated_at": "{now}",
+    #         "created_by": "{created_by}"
+    #     }}
+    # }}'''
 
+    # 適切なjson形式に変換
+    data_json = json.dumps(row_data_dict)
     # print(data_json)
 
     # データをDBに追加
@@ -234,21 +249,22 @@ def detail_edit_data():
     if len(deadline_time_split) == 3:
         deadline_time = f"{deadline_time_split[0]}:{deadline_time_split[1]}"
 
-    # POSTによって送られてくるデータに課題IDを添える
-    data_json = f'''{{
-        "{kadai_id}": {{
-            "title": "{title}",
-            "deadline": "{deadline_date} {deadline_time}:00",
-            "subject": "{subject}",
-            "star_num": {star_num},
-            "memo": "{memo}",
-            "memo_img": "testdayo.jpg",
-            "created_at": "{created_at}",
-            "updated_at": "{now}",
-            "created_by": "{created_by}"
-        }}
-    }}'''
+    # データの整形
+    row_data_dict = {
+        "title": title,
+        "deadline": f"{deadline_date} {deadline_time}:00",
+        "subject": subject,
+        "star_num": star_num,
+        "memo": memo,
+        "memo_img": "testdayo.jpg",
+        "created_at": now,
+        "updated_at": now,
+        "created_by": created_by
+    }
+    row_data_dict = {kadai_id: row_data_dict}
 
+    # 適切なjson形式に変換
+    data_json = json.dumps(row_data_dict)
     # print(data_json)
 
     # DBのデータを更新
