@@ -7,6 +7,7 @@ import { update_tr_color } from "./update_tr_color.js";
 const userID = getUserID();
 console.log("ID:" + userID); //アクセスしてきた人のuserIDが表示されるはず
 
+console.log(Date.now()); // 現在時刻のミリ秒を表示
 // deadline文字例を残り時間に変換する関数
 // convert_remaining_time("2024-01-22 12:30:05");
 

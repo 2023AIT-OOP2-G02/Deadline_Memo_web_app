@@ -19,10 +19,11 @@ function requestPushPermission() {
 
 
 export function sendPushNotification (title, deadline) {// 通知を送信する関数 6時間、1時間、30分、10分、5分、3分
-    if (deadline == "6時間") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
+    const now_sec = Number(Date().split(/[ :]/)[6]);
+    if (deadline === "6時間" && now_sec === 1) {
+        Push.create("Deadline Tracker", {
+            body: `「${title}」の期限は残り6時間です！`,
+            timeout: 5000,
             onClick: function () {
                 window.focus();
                 this.close();
@@ -30,10 +31,10 @@ export function sendPushNotification (title, deadline) {// 通知を送信する
         });
     }
 
-    if (deadline == "1時間") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
+    if (deadline === "1時間" && now_sec === 1) {
+        Push.create("Deadline Tracker", {
+            body: `「${title}」の期限は残り1時間です！`,
+            timeout: 5000,
             onClick: function () {
                 window.focus();
                 this.close();
@@ -41,10 +42,10 @@ export function sendPushNotification (title, deadline) {// 通知を送信する
         });
     }
 
-    if (deadline == "30分") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
+    if (deadline === "30分") {
+        Push.create("Deadline Tracker", {
+            body: `「${title}」の期限は残り30分です！`,
+            timeout: 5000,
             onClick: function () {
                 window.focus();
                 this.close();
@@ -52,10 +53,10 @@ export function sendPushNotification (title, deadline) {// 通知を送信する
         });
     }
 
-    if (deadline == "10分") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
+    if (deadline === "10分") {
+        Push.create("Deadline Tracker", {
+            body: `「${title}」の期限は残り10分です！`,
+            timeout: 5000,
             onClick: function () {
                 window.focus();
                 this.close();
@@ -63,21 +64,10 @@ export function sendPushNotification (title, deadline) {// 通知を送信する
         });
     }
 
-    if (deadline == "5分") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
-        });
-    }
-
-    if (deadline == "3分") {
-        Push.create("アクション通知", {
-            body: title + "の期限が迫っています！",
-            timeout: 1000,
+    if (deadline === "3分") {
+        Push.create("Deadline Tracker", {
+            body: `「${title}」の期限は残り3分です！`,
+            timeout: 5000,
             onClick: function () {
                 window.focus();
                 this.close();
