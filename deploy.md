@@ -1,8 +1,3 @@
-## Root Directory
-  
-  Deadline_Memo_web_app
-
-  
 ## Build Command
 
   pip install -r requirements.txt
