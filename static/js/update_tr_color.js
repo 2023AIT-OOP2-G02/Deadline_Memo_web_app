@@ -19,10 +19,10 @@ export const update_tr_color = (deadlineElemArr) => {
         else if (day < 1 && hour < 1 && minute < 60) {
             deadlineElem.style.background = "#ffa9a9";
         }
-        else if (day < 1 && hour < 3) {
+        else if (day < 1 && hour < 6) { // 3?
             deadlineElem.style.background = "#fdbea7";
         }
-        else if (day < 1 && hour < 6) {
+        else if (day < 1 && hour < 12) {
             deadlineElem.style.background = "#ffdab9";
         }
         else if (day < 1) {
