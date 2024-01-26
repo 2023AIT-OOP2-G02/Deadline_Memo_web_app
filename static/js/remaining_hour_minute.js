@@ -62,5 +62,5 @@ export const remaining_hour_minute = (deadline_data) => {
     const diff_minute = Math.floor((diff_sec - diff_hour * hour_sec) / minute_sec);
     const diff_second = Math.floor((diff_sec - diff_minute * minute_sec) / second_sec);
 
-    return [diff_hour, diff_minute];
+    return [diff_day, diff_hour, diff_minute];
 }

@@ -5,21 +5,34 @@ export const update_tr_color = (deadlineElemArr) => {
         // elemのdata-deadlineを取得
         const deadline = deadlineElem.dataset.deadline;
         const temp = remaining_hour_minute(deadline);
-        const hour = temp[0];
-        const minute = temp[1];
+        const day = temp[0];
+        const hour = temp[1];
+        const minute = temp[2];
+        console.log(temp);
 
-        if (hour < 1 && minute < 10) {
-            // 赤色にする (10分以下)
-            deadlineElem.style.background = "red";
-        } else if (hour < 1 && minute < 30) {
-            // ピンク色にする (30分以下)
-            deadlineElem.style.background = "pink";
-        } else if (hour < 1 && minute < 60) {
-            // 黄色にする (1時間以下)
-            deadlineElem.style.background = "yellow";
-        } else if (hour < 6) {
-            // 緑色にする (6時間以下)
-            deadlineElem.style.background = "green";
+
+
+        if ((day === 0 && hour === 0 && minute === 0) || (day < 0 || hour < 0 || minute < 0)) {
+            // どれかがマイナスの値&0の場合
+            deadlineElem.style.background = "#e1e1e1";
+        }
+        else if (day < 1 && hour < 1 && minute < 60) {
+            deadlineElem.style.background = "#ffa9a9";
+        }
+        else if (day < 1 && hour < 3) {
+            deadlineElem.style.background = "#fdbea7";
+        }
+        else if (day < 1 && hour < 6) {
+            deadlineElem.style.background = "#ffdab9";
+        }
+        else if (day < 1) {
+            deadlineElem.style.background = "#fff7cc";
+        }
+        else if (day < 3) {
+            deadlineElem.style.background = "#ffffe0";
+        }
+        else if (day < 7) {
+            deadlineElem.style.background = "#fffdf0";
         }
     });
 }
