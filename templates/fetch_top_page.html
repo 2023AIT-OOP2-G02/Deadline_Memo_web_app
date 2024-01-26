@@ -14,103 +14,54 @@
 
 <body>
 <header id="header">
-    <div id="date"></div>
-    <h2 id="header_title">TopPage</h2>
+    <h1 id="header_title">Deadline Tracker</h1>
 </header>
 <section>
     <!-- メッセージの表示領域を追加 -->
-    <div id="message-container" role="alert" style="display: none;"></div>
-    <div id="error-container" role="alert" style="display: none;"></div>
+    <div id="message-container" role="alert" style="display: {{'block' if notice else 'none'}};">{{notice}}</div>
+    <div id="error-container" role="alert" style="display: {{'block' if error else 'none'}};">{{error}}</div>
 </section>
 <div class="container text-center">
-    <div class="row">
-        <div class="col">
-            年月日
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
+    <br>
+    <div class="button">
+        <div class="button1">
             <a href="{{url_for('remove_page')}}">
                 <button type="button" class="btn btn-danger">削除</button>
             </a>
+        </div>
+        <div class="button2">
             <a href="{{url_for('add_page')}}">
                 <button type="button" class="btn btn-primary">追加</button>
             </a>
         </div>
     </div>
 
-    <h2>タスクリスト</h2>
+    <div id="date" align="center"></div>
+    <h2>課題一覧</h2>
     <div class="table-scrool">
-        <table class="table">
-            <thead class="table-light">
+        <table class="table table-hover">
+            <thead>
             <tr>
                 <th>課題名</th>
                 <th>講義名</th>
+                <th>重要度</th>
                 <th>残り時間</th>
             </tr>
             </thead>
             <tbody>
-            {% for key in keys %}
-                <tr>
-                    <td>{{data_dict[key]["title"]}}</td>
-                    <td>{{data_dict[key]["subject"]}}</td>
-                    <td>0</td>
-                    <!-- <td>{{data_dict[key]["deadline"]}}</td> -->
-                </tr>
-            {% endfor %}
-            <!-- <tr>
-                <td>かだい１</td>
-                <td>こうぎ１</td>
-                <td>1日</td>
-            </tr>
-            <tr>
-                <td>かだい２</td>
-                <td>こうぎ２</td>
-                <td>8時間</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr>
-            <tr>
-                <td>かだい３</td>
-                <td>こうぎ３</td>
-                <td>10分</td>
-            </tr> -->
             </tbody>
         </table>
     </div>
-
-
-    <div class="row">
-        <div class="col">
-        </div>
-        <div class="col">
-        </div>
-        <div class="col">
-            <a href="{{url_for("search_page")}}">
+    <br>
+    <div class="button">
+        <div class="button1">
+            <a href="{{url_for('search_page')}}">
                 <button type="button" class="btn btn-dark">検索</button>
+            </a>
+        </div>
+        <div class="button2">
+            <a href="{{url_for('sort_page')}}">
+                <button type="button" class="btn btn-dark">並び替え</button>
             </a>
         </div>
     </div>
