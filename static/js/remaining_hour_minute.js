@@ -1,5 +1,4 @@
-
-export const convert_remaining_time = (deadline_data) => {
+export const remaining_hour_minute = (deadline_data) => {
     // 最終的に受け取る引数: 2024-01-21 21:03:00
 
     // 引数から -, :, 半角スペースを除く
@@ -63,72 +62,5 @@ export const convert_remaining_time = (deadline_data) => {
     const diff_minute = Math.floor((diff_sec - diff_hour * hour_sec) / minute_sec);
     const diff_second = Math.floor((diff_sec - diff_minute * minute_sec) / second_sec);
 
-    if (diff_sec > year_sec) {
-        // ex:年単位の場合
-
-        // 1つの文字例に変換
-        result_time_str = `${diff_year}年`;
-        if (diff_month !== 0) { // 0ヶ月の場合は表示しない
-            result_time_str += ` ${diff_month}ヶ月`;
-        }
-    }
-    else if (diff_sec > month_sec) {
-        // 月単位の場合
-
-        // 1つの文字例に変換
-        result_time_str = `${diff_month}ヶ月`;
-        if (diff_day !== 0) { // 0日の場合は表示しない
-            result_time_str += ` ${diff_month}日`;
-        }
-    }
-    else if (diff_sec > day_sec) {
-        // 日単位の場合
-
-        result_time_str = `${diff_day}日`;
-        if (diff_hour !== 0) { // 0時間の場合は表示しない
-            result_time_str += ` ${diff_hour}時間`;
-        }
-    }
-    else if (diff_sec > hour_sec) {
-        // 時間単位の場合
-
-        result_time_str = `${diff_hour}時間`;
-        if (diff_minute !== 0) { // 0分の場合は表示しない
-            result_time_str += ` ${diff_minute}分`;
-        }
-    }
-    else if (diff_sec > minute_sec) {
-        // 分単位の場合
-
-        result_time_str = `${diff_minute}分`;
-        if (diff_second !== 0) { // 0秒の場合は表示しない
-            result_time_str += ` ${diff_second}秒`;
-        }
-    }
-    else if (diff_sec > 0) {
-        // 秒単位の場合
-
-        result_time_str = `${diff_sec}秒`;
-    }
-    else if (diff_sec == 0 || diff_sec < 0) {
-        // 時間切れの場合
-        result_time_str = `0秒`;
-    }
-
-    // 上記の年単位と同様に、月、日、時間、分、秒の単位に変換する
-    // 基本的に、大きい単位と1つ小さい単位の組み合わせで表示する
-    // ex: 2年 1ヶ月
-    //     1ヶ月 2日
-    //     2日 3時間
-    //     3時間 4分
-    //     4分 5秒
-    //     5秒
-    //     0秒
-    // 時間切れの場合(diff_secが0だったり)は0秒になるようにする
-
-
-    // デバック用
-    // console.log("残り時間：" + result_time_str);
-
-    return result_time_str;
+    return [diff_hour, diff_minute];
 }

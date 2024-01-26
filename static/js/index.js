@@ -1,5 +1,6 @@
 import { getUserID } from "./get_user_id.js";
 import { update_remaining_time } from "./update_remaining_time.js";
+import { update_tr_color } from "./update_tr_color.js";
 
 
 // ユーザーIDを取得
@@ -43,12 +44,14 @@ const deadlineElems = document.getElementsByClassName('deadline');
 const deadlineElemArr = Array.from(deadlineElems);
 
 //初回即時実行
-update_remaining_time(deadlineElemArr);
+update_remaining_time(deadlineElemArr); // 残り時間を更新
+update_tr_color(deadlineElemArr); // 時間の背景色を変更
 
 // 1秒おきにループさせる
 setInterval(
     () => {
         update_remaining_time(deadlineElemArr);
+        update_tr_color(deadlineElemArr);
     },
     1000
 );
