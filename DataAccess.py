@@ -16,7 +16,10 @@ class DataAccess:
             data_json (str): json形式のデータ
         """
         
-        data_dict = json.loads(data_json)
+        try:
+            data_dict = json.loads(data_json)
+        except json.decoder.JSONDecodeError as e:
+            raise e
 
         id: str = list(data_dict.keys())[0]
         title: str = data_dict[id]["title"]
@@ -34,7 +37,7 @@ class DataAccess:
                     created_by=created_by)
         db.session.add(data)
         db.session.commit()
-
+        db.session.close()
 
     # 単独のデータを削除する関数
     def delete_data(id: str):
@@ -72,8 +75,11 @@ class DataAccess:
         Args:
             data_json (str): json形式のデータ
         """
-        
-        data_dict = json.loads(data_json)
+        try:
+            data_dict = json.loads(data_json)
+        except json.decoder.JSONDecodeError as e:
+            raise e
+            
 
         id: str = list(data_dict.keys())[0]
         title: str = data_dict[id]["title"]

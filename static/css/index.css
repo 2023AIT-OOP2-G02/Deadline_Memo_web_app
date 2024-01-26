@@ -28,13 +28,19 @@
     overflow: auto;
 }
 
-#message-container {
+#message-container,
+#error-container {
     margin: 10px;
     padding: 1rem;
     border: 1px solid #e9ecef;
     border-left-width: 0.25rem;
     border-left-color: #5bc0de;
     border-radius: 0.25rem;
+}
+
+#error-container {
+    color: #dc3545;
+    border-left-color: #dc3545;
 }
 
 .hidden--visually {
@@ -56,13 +62,13 @@
     color: gray;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
-  }
+}
 
-  .rating__icon::before {
+.rating__icon::before {
     content: "★";
     font-size: 1rem;
     padding: 0.5rem;
-  }
+}
 
 .rating__icon_checked::before {
     content: "★";
@@ -71,13 +77,13 @@
     color: #ffbb00;
 }
 
-  .rating__input ~ .rating__label {
+.rating__input~.rating__label {
     color: lightgray;
-  }
+}
 
-  .rating__input ~ .rating__label {
+.rating__input~.rating__label {
     color: #ffbb00;
-  }
+}
 
 .checked {
     color: #ffbb00;
