@@ -19,7 +19,7 @@
     <section>
         <!-- メッセージの表示領域を追加 -->
         <div id="message-container" role="alert" style="display: {{'block' if notice else 'none'}};">{{notice}}</div>
-        <div id="error-container" role="alert" style="display: none;"></div>
+        <div id="error-container" role="alert" style="display: {{'block' if error else 'none'}};">{{error}}</div>
     </section>
     <div class="container text-center">
         <br>

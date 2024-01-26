@@ -63,12 +63,12 @@ def remove_data():
     print(user_id)
     # DBから削除
     DataAccess.delete_data_list(remove_ids)
-    #削除通知する
+    # 削除通知する
     res = DataAccess.fetch_data_all(user_id)
     data_dict = json.loads(res)
     keys = list(data_dict.keys())
     notice = "データの削除が完了しました。"
-    return render_template("index.html", keys=keys,data_dict=data_dict,notice=notice)
+    return render_template("index.html", keys=keys, data_dict=data_dict, notice=notice)
 
 
 # res = DataAccess.fetch_data_all("32ce6c36-5aeb-4a44-871c-209e14cbd272")
@@ -92,13 +92,13 @@ def add_data():
     created_by = request.form.get('created_by', None)
 
     # デバッグ用
-    print(f"title: {title}")
-    print(f"deadline_date: {deadline_date}")
-    print(f"deadline_time: {deadline_time}")
-    print(f"subject: {subject}")
-    print(f"memo: {memo}")
-    print(f"star_num: {star_num}")
-    print(f"created_by: {created_by}")
+    # print(f"title: {title}")
+    # print(f"deadline_date: {deadline_date}")
+    # print(f"deadline_time: {deadline_time}")
+    # print(f"subject: {subject}")
+    # print(f"memo: {memo}")
+    # print(f"star_num: {star_num}")
+    # print(f"created_by: {created_by}")
 
     # エラー用のメッセージを格納する変数
     message = ""
@@ -112,7 +112,7 @@ def add_data():
         message += "deadline_timeが未入力です。\n"
     if subject == "":
         message += "subjectが未入力です。\n"
-    if subject == "":
+    if memo == "":
         memo += "memoが未入力です。\n"
     if star_num == "":
         message += "star_numが未入力です。\n"
@@ -146,13 +146,19 @@ def add_data():
         }}
     }}'''
 
-    print(data_json)
+    # print(data_json)
 
     # データをDBに追加
-    DataAccess.add_data(data_json)
+    try:
+        DataAccess.add_data(data_json)
+    except json.decoder.JSONDecodeError:
+        user_id = request.form.get('created_by', None)
+        res = DataAccess.fetch_data_all(user_id)
+        data_dict = json.loads(res)
+        keys = list(data_dict.keys())
+        return render_template("index.html", data_dict=data_dict, keys=keys, error="データの登録に失敗しました。")
 
     # DBに正常に追加されていることを確認
-    # TODO: user_idも表示する
     print("以下のデータの追加を確認：")
     print(f"kadai_id: {kadai_id}")
     print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
@@ -163,7 +169,7 @@ def add_data():
     keys = list(data_dict.keys())
     notice = "データの登録が完了しました。"
     # 送信が完了したらTOPページに戻る
-    return render_template("index.html",data_dict=data_dict,keys=keys,notice=notice)
+    return render_template("index.html", data_dict=data_dict, keys=keys, notice=notice)
 
 
 @app.route("/detail_edit_page/<kadai_id>", methods=["GET"])
@@ -174,7 +180,6 @@ def detail_edit_page(kadai_id):
 
 @app.route("/detail_edit_data", methods=["POST"])
 def detail_edit_data():
-    print("nu")
     # 課題編集確定ボタン #
     # 検索パラメータの取得
     title = request.form.get('title', None)
@@ -188,13 +193,13 @@ def detail_edit_data():
     created_at = request.form.get('created_at', None)
 
     # デバッグ用
-    print(f"title: {title}")
-    print(f"deadline_date: {deadline_date}")
-    print(f"deadline_time: {deadline_time}")
-    print(f"subject: {subject}")
-    print(f"memo: {memo}")
-    print(f"star_num: {star_num}")
-    print(f"created_by: {created_by}")
+    # print(f"title: {title}")
+    # print(f"deadline_date: {deadline_date}")
+    # print(f"deadline_time: {deadline_time}")
+    # print(f"subject: {subject}")
+    # print(f"memo: {memo}")
+    # print(f"star_num: {star_num}")
+    # print(f"created_by: {created_by}")
 
     # エラー用のメッセージを格納する変数
     message = ""
@@ -229,7 +234,6 @@ def detail_edit_data():
     if len(deadline_time_split) == 3:
         deadline_time = f"{deadline_time_split[0]}:{deadline_time_split[1]}"
 
-
     # POSTによって送られてくるデータに課題IDを添える
     data_json = f'''{{
         "{kadai_id}": {{
@@ -245,15 +249,22 @@ def detail_edit_data():
         }}
     }}'''
 
-    print(data_json)
+    # print(data_json)
 
     # DBのデータを更新
-    DataAccess.update_data(data_json)
+    try:
+        DataAccess.update_data(data_json)
+    except json.decoder.JSONDecodeError:
+        user_id = request.form.get('created_by', None)
+        res = DataAccess.fetch_data_all(user_id)
+        data_dict = json.loads(res)
+        keys = list(data_dict.keys())
+        return render_template("index.html", data_dict=data_dict, keys=keys, error="データの登録に失敗しました。")
 
-    # DBに正常に追加されていることを確認
-    print("以下のデータの追加を確認：")
-    print(f"kadai_id: {kadai_id}")
-    print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
+    # DBに正常に反映されていることを確認
+    # print("以下のデータの追加を確認：")
+    # print(f"kadai_id: {kadai_id}")
+    # print(f"title: {Data.query.filter_by(id=kadai_id).first().title}")
 
     user_id = request.form.get('created_by', None)
     res = DataAccess.fetch_data_all(user_id)
@@ -262,7 +273,7 @@ def detail_edit_data():
     notice = "データの更新が完了しました。"
 
     # 送信が完了したらTOPページに戻る
-    return render_template("index.html",keys=keys,data_dict=data_dict,notice=notice)
+    return render_template("index.html", keys=keys, data_dict=data_dict, notice=notice)
 
 
 # @app.route("/remove_page")
@@ -315,7 +326,8 @@ def sort_data():
 
     if sort_key and order:
         data_json = DataAccess.fetch_data_all(user_id=user_id)
-        res_json = DataAccess.sort_data_json(data_json=data_json, sort_key=sort_key, order=order)
+        res_json = DataAccess.sort_data_json(
+            data_json=data_json, sort_key=sort_key, order=order)
         res_dict = json.loads(res_json)
         keys = list(res_dict.keys())
 
@@ -392,4 +404,4 @@ def API_test_DatabaseDelete():
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
-    app.run(debug=True, port = 5050)
+    app.run(debug=True, port=5050)
