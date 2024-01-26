@@ -8,13 +8,10 @@ export const update_tr_color = (deadlineElemArr) => {
         const day = temp[0];
         const hour = temp[1];
         const minute = temp[2];
-        console.log(temp);
-
-
 
         if ((day === 0 && hour === 0 && minute === 0) || (day < 0 || hour < 0 || minute < 0)) {
             // どれかがマイナスの値&0の場合
-            deadlineElem.style.background = "#e1e1e1";
+            deadlineElem.style.background = "#f1f1f1";
         }
         else if (day < 1 && hour < 1 && minute < 60) {
             deadlineElem.style.background = "#ffa9a9";
