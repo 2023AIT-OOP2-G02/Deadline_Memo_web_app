@@ -27,12 +27,7 @@ class Data(db.Model):
                         onupdate=datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))))  # 更新日時(日本時間)
 
 
-if __name__ == "__main__":
-    # debugモードが不要の場合は、debug=Trueを消してください
-    # app.run(debug=True)
+with app.app_context():
+    db.drop_all()  # データベースの全てのテーブルを削除
+    db.create_all()  # データベースのテーブルを再作成
 
-    with app.app_context():
-        db.drop_all()  # データベースの全てのテーブルを削除
-        db.create_all()  # データベースのテーブルを再作成
-
-    pass

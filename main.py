@@ -420,7 +420,4 @@ def API_test_DatabaseDelete():
 
 if __name__ == "__main__":
     # debugモードが不要の場合は、debug=Trueを消してください
-    with app.app_context():
-        db.drop_all()  # データベースの全てのテーブルを削除
-        db.create_all()  # データベースのテーブルを再作成
     app.run(debug=True, port=5050)
