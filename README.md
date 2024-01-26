@@ -124,3 +124,7 @@ instance/example.dbファイルが生成されたら成功。
 
 ### アプリ画面
 ![アプリ画面](img/app_screen.png)
+
+### アプリ
+https://deadline-tracker.onrender.com
+(本実装とは異なります)
