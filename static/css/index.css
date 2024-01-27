@@ -60,20 +60,20 @@
 .rating__label {
     cursor: pointer;
     color: gray;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
 }
 
 .rating__icon::before {
     content: "★";
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0.1rem;
 }
 
 .rating__icon_checked::before {
     content: "★";
     font-size: 1rem;
-    padding: 0.5rem;
+    padding: 0.1rem;
     color: #ffbb00;
 }
 
