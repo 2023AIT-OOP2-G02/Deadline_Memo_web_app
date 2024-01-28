@@ -1,4 +1,4 @@
-# deadline_memo_web_app(仮)
+# Deadline Tracker
 
 ## 概要
 課題の概要をメモして、締切を一括で確認するためのWebアプリケーションです。
