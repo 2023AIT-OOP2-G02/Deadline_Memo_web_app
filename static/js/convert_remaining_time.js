@@ -63,7 +63,7 @@ export const convert_remaining_time = (deadline_data) => {
     const diff_minute = Math.floor((diff_sec - diff_hour * hour_sec) / minute_sec);
     const diff_second = Math.floor((diff_sec - diff_minute * minute_sec) / second_sec);
 
-    if (diff_sec > year_sec) {
+    if (diff_sec >= year_sec) {
         // ex:年単位の場合
 
         // 1つの文字例に変換
@@ -72,7 +72,7 @@ export const convert_remaining_time = (deadline_data) => {
             result_time_str += ` ${diff_month}ヶ月`;
         }
     }
-    else if (diff_sec > month_sec) {
+    else if (diff_sec >= month_sec) {
         // 月単位の場合
 
         // 1つの文字例に変換
@@ -81,7 +81,7 @@ export const convert_remaining_time = (deadline_data) => {
             result_time_str += ` ${diff_month}日`;
         }
     }
-    else if (diff_sec > day_sec) {
+    else if (diff_sec >= day_sec) {
         // 日単位の場合
 
         result_time_str = `${diff_day}日`;
@@ -89,7 +89,7 @@ export const convert_remaining_time = (deadline_data) => {
             result_time_str += ` ${diff_hour}時間`;
         }
     }
-    else if (diff_sec > hour_sec) {
+    else if (diff_sec >= hour_sec) {
         // 時間単位の場合
 
         result_time_str = `${diff_hour}時間`;
@@ -97,7 +97,7 @@ export const convert_remaining_time = (deadline_data) => {
             result_time_str += ` ${diff_minute}分`;
         }
     }
-    else if (diff_sec > minute_sec) {
+    else if (diff_sec >= minute_sec) {
         // 分単位の場合
 
         result_time_str = `${diff_minute}分`;
@@ -105,7 +105,7 @@ export const convert_remaining_time = (deadline_data) => {
             result_time_str += ` ${diff_second}秒`;
         }
     }
-    else if (diff_sec > 0) {
+    else if (diff_sec >= 0) {
         // 秒単位の場合
 
         result_time_str = `${diff_sec}秒`;
